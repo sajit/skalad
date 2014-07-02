@@ -2,7 +2,10 @@ package problems
 
 import org.scalatest.{Matchers, FlatSpec}
 
+
 import scala.collection.mutable.Stack
+
+
 
 /**
  * Created by skunnumkal on 7/2/14.
@@ -24,5 +27,12 @@ class ExampleSpec extends FlatSpec with Matchers {
       emptyStack.pop()
     }
   }
+
+  it should "get last" in {
+    val last:Option[Int] = Main.last(List[Int]())
+    last should be (None)
+    Main.last(List[Int](5,7)) should be (Some(7))
+  }
+
 
 }

@@ -34,5 +34,13 @@ class ExampleSpec extends FlatSpec with Matchers {
     Main.last(List[Int](5,7)) should be (Some(7))
   }
 
+  it should "get last but one" in {
+    val last:Option[Int] = Main.lastButOnev1(List[Int](4))
+    last should be (None)
+    Main.lastButOnev1(List[Int](5,7)) should be (Some(5))
+
+    
+  }
+
 
 }

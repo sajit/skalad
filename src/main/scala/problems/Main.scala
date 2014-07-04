@@ -38,4 +38,20 @@ object Main extends App{
 //    case a :: b :: Nil  =>   Some(a)
 //    case _ :: a :: b :: Nil => Some(a)
 //  }
+
+
+  /**
+   * Find kth element in a list
+   * @param x
+   * @param k
+   * @tparam T
+   * @return
+   */
+    def kth[T](x:List[T],k:Int):Option[T] = x.size < k match {
+      case true => None
+      case _ => Some(x(k-1))
+
+    }
+
+
 }

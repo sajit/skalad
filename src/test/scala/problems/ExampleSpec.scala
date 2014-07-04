@@ -42,5 +42,10 @@ class ExampleSpec extends FlatSpec with Matchers {
     
   }
 
+  it should "find kth element" in {
+    Main.kth(List[Int](4,3),3) should be (None)
+    Main.kth(List[Int](4,3),2) should be (Some(3))
+  }
+
 
 }

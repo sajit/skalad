@@ -54,4 +54,29 @@ object Main extends App{
     }
 
 
+    def reverse[T](x:List[T]):List[T] = {
+      def reverseHelper[T](aList:List[T],acc:List[T]):List[T] = {
+        if(aList.isEmpty){
+          acc
+        }
+        else{
+          reverseHelper(aList.tail,aList.head :: acc)
+        }
+      }
+      reverseHelper(x,List())
+    }
+
+
+   def isPalindrome[T](list:List[T]):Boolean = list match {
+
+     case Nil => true
+     case Nil :: a :: Nil => true
+     case _ => {
+       val head = list.head
+       val last = list.last
+       head.equals(last) && isPalindrome(list.slice(1,list.length-1))
+     }
+   }
+
+
 }

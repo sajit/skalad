@@ -47,5 +47,25 @@ class ExampleSpec extends FlatSpec with Matchers {
     Main.kth(List[Int](4,3),2) should be (Some(3))
   }
 
+  it should "reverse a list" in {
+    Main.reverse(List()) should be (List())
+    val original = List(4,8,2,5)
+    val expected = List(5,2,8,4)
+    val result:List[Int] = Main.reverse(original)
+    //System.out.println(result)
+    result should be (expected)
+  }
+
+  it should "check for palindrome"  in {
+    Main.isPalindrome(List()) should be (true)
+    Main.isPalindrome(List(1)) should be (true)
+    Main.isPalindrome(List(1,3)) should be (false)
+
+    Main.isPalindrome(List(3,5,5,3)) should be (true)
+
+    Main.isPalindrome(List(3,3)) should be (true)
+    Main.isPalindrome(List(3,5,6,5,3)) should be (true)
+
+  }
 
 }

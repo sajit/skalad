@@ -78,5 +78,48 @@ object Main extends App{
      }
    }
 
+  /**
+   * Version 1
+   * @param ll
+   * @tparam T
+   * @return
+   */
+  def flatten1[T](ll:List[List[T]]):List[T] = ll.flatten
+
+
+  
+  def flatten2[T](ll:List[List[T]]):List[T] = ll.foldRight(List[T]())((sum,x) => sum ++ x)
+
+
+  /**
+   * Remove consecutive duplicates from a list
+   * @param a
+   * @tparam T
+   * @return
+   */
+  def compress(a:List[Int]):List[Int] = {
+    def compressHelper(aList:List[Int],acc:List[Int]):List[Int] = {
+      if(aList.isEmpty){
+        acc
+      }
+      else{
+        if(acc.isEmpty){
+          compressHelper(aList.tail,acc :+ aList.head)
+        }else{
+          if(aList.head == acc.last){
+            //skip
+            compressHelper(aList.tail,acc)
+          }
+          else{
+            //add
+            compressHelper(aList.tail,acc :+ aList.head)
+          }
+        }
+      }
+    }
+    compressHelper(a,List())
+  }
+
+
 
 }

@@ -68,4 +68,23 @@ class ExampleSpec extends FlatSpec with Matchers {
 
   }
 
+  it should "flatten nested lists" in {
+    val a = List(List(1,4),List(3,4,5),List(1))
+    val expected = List(1,4,3,4,5,1)
+    Main.flatten1(a) should be (expected)
+
+    Main.flatten1(List(List(5),List(9))) should be (List(5,9))
+
+    Main.flatten2(a) should be (expected)
+
+    Main.flatten2(List(List(5),List(9))) should be (List(5,9))
+  }
+
+  it should "remove consecutive duplicates" in {
+    val input = List(1,5,7,3,5,5,5,3,7,1,1)
+    val result = Main.compress(input)
+    val expected = List(1,5,7,3,5,3,7,1)
+    result should be (expected)
+  }
+
 }

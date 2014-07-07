@@ -4,7 +4,7 @@ package problems
  * http://aperiodic.net/phil/scala/s-99/
  */
 object Main extends App{
- System.out.println("Evanescense")
+ println("Evanescense")
 
   /**
    * Return the last element in an array
@@ -74,7 +74,8 @@ object Main extends App{
      case _ => {
        val head = list.head
        val last = list.last
-       head.equals(last) && isPalindrome(list.slice(1,list.length-1))
+
+       head == last && isPalindrome(list.slice(1,list.length-1))
      }
    }
 
@@ -94,7 +95,6 @@ object Main extends App{
   /**
    * Remove consecutive duplicates from a list
    * @param a
-   * @tparam T
    * @return
    */
   def compress(a:List[Int]):List[Int] = {

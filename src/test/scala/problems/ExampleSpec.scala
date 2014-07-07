@@ -87,4 +87,17 @@ class ExampleSpec extends FlatSpec with Matchers {
     result should be (expected)
   }
 
+  it should "pack consdecutive elements into sublists" in {
+    val result = Main.pack(List('a', 'a', 'a', 'a', 'b', 'c', 'c', 'a', 'a', 'd', 'e', 'e', 'e', 'e'))
+    val expected = List(List('a', 'a', 'a', 'a','a','a'), List('b'), List('c', 'c'), List('d'), List('e', 'e', 'e', 'e'))
+    result should be (expected)
+  }
+
+  it should "neo pack" in {
+    val result = Main.neopack(List('a', 'a', 'a', 'a', 'b', 'c', 'c', 'a', 'a', 'd', 'e', 'e', 'e', 'e'))
+    val expected = List(List('a', 'a', 'a', 'a'), List('b'), List('c', 'c'),List('a','a'), List('d'),
+      List('e', 'e', 'e', 'e'))
+    result should be (expected)
+  }
+
 }

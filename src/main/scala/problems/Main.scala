@@ -120,6 +120,31 @@ object Main extends App{
     compressHelper(a,List())
   }
 
+  /**
+   *Pack consecutive duplicates of list elements into sublists.
+  If a list contains repeated elements they should be placed in separate sublists.
+   */
+
+  def pack(x:List[Char]):List[List[Char]] = {
+    val mapOfList = x.groupBy(el => el)
+    mapOfList.values.toList.sortWith((aList,bList) => aList.head < bList.head)
+  }
+
+  def neopack(x:List[Char]):List[List[Char]] = {
+    def doNeoPack(aList:List[Char]):List[List[Char]] = {
+      if(aList.isEmpty){
+        Nil
+      }
+      else{
+        val (sub,rest) = aList.span{el => el == aList.head}
+        sub :: doNeoPack(rest)
+
+      }
+    }
+    doNeoPack(x)
+
+  }
+
 
 
 }

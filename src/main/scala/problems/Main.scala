@@ -170,6 +170,10 @@ Use the result of problem neopack to implement the so-called run-length encoding
 
     result.map{aList => (aList.length, aList.head)}.toList
   }
+
+  def encodeAny(tuples:List[(Int,Char)]):List[Any] = {
+    tuples.map((tuple) => if(tuple._1 > 1){tuple} else {tuple._2} )
+  }
 }
 
 

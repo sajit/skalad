@@ -110,4 +110,14 @@ class ExampleSpec extends FlatSpec with Matchers {
     result should be (expected)
   }
 
+  it should "passthrough tuples of 1 occurrence" in {
+    val input = List('a', 'a', 'a', 'a', 'b', 'c', 'c', 'a', 'a', 'd', 'e', 'e', 'e', 'e')
+    val result:List[(Int,Char)] = Main.encode1(input)
+    val encodedR = Main.encodeAny(result)
+    val expected = List((4,'a'),'b',(2,'c'),(2,'a'),'d',(4,'e'))
+
+    encodedR should be (expected)
+
+  }
+
 }

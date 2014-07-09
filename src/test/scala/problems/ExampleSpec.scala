@@ -94,4 +94,12 @@ class ExampleSpec extends FlatSpec with Matchers {
     result should be (expected)
   }
 
+  it should "encode neopacked" in {
+    val result = Main.neopack(List('a', 'a', 'a', 'a', 'b', 'c', 'c', 'a', 'a', 'd', 'e', 'e', 'e', 'e'))
+
+    val encoded = Main.encode(result)
+    val expected = List((4,'a'),(1,'b'),(2,'c'),(2,'a'),(1,'d'),(4,'e'))
+    encoded should be (expected)
+  }
+
 }

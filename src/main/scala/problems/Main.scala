@@ -145,6 +145,19 @@ object Main extends App{
 
   }
 
+  /*
+  Use the result of problem P09 to implement the so-called run-length encoding data compression method.
+   Consecutive duplicates of elements are encoded as tuples (N, E) where N is the number of duplicates of the element E
+   */
+  def encode(packed: List[List[Char]]):List[(Int,Char)] = {
+    packed.map(aList => (aList.length,aList.head)).toList
+  }
+
+  /*
+  Modify the result of problem P10 (encode) in such a way that if an element has no duplicates
+  it is simply copied into the result list. Only elements with duplicates are transferred as (N, E) terms.
+   */
+
 
 
 }

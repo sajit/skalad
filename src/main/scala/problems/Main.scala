@@ -216,6 +216,18 @@ Use the result of problem neopack to implement the so-called run-length encoding
     (x.take(pos),x.takeRight(x.length-pos))
   }
 
+  def extract[T](start:Int,end:Int,x:List[T]):List[T] = {
+    if(start > end || start <0 || end >= x.length){
+      throw new IllegalArgumentException
+    }
+    val anIndexedSeq = for{
+      i <- 0 until x.length
+      if(i >= start && i < end)
+    }yield{x(i)}
+
+    anIndexedSeq.toList
+  }
+
 }
 
 

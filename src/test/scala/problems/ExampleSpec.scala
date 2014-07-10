@@ -144,7 +144,6 @@ class ExampleSpec extends FlatSpec with Matchers {
   it should "split at position 3" in {
     val input  = List(5,6,7,8,9)
     val (x,y) = Main.split(3,input)
-    println(" X length = "+ x.length + " Y = " + y.length)
     x.length should be (3)
     y.length should be (2)
     x should be (List(5,6,7))
@@ -157,5 +156,11 @@ class ExampleSpec extends FlatSpec with Matchers {
       val (x,y) = Main.split(10,input)
     }
 
+  }
+
+  it should "slice up a list" in {
+    val input = List(4,6,7,4,5,6,8,1,6)
+    val output = Main.extract(2,5,input)
+    output should be (List(7,4,5))
   }
 }

@@ -140,4 +140,22 @@ class ExampleSpec extends FlatSpec with Matchers {
     val expected = List(5,7,2,5,9)
     Main.dropNth(input,3) should be (expected)
   }
+
+  it should "split at position 3" in {
+    val input  = List(5,6,7,8,9)
+    val (x,y) = Main.split(3,input)
+    println(" X length = "+ x.length + " Y = " + y.length)
+    x.length should be (3)
+    y.length should be (2)
+    x should be (List(5,6,7))
+    y should be (List(8,9))
+  }
+
+  it should "throw exception for bad length" in {
+    val input  = List(5,6,7,8,9)
+    intercept[NoSuchElementException] {
+      val (x,y) = Main.split(10,input)
+    }
+
+  }
 }

@@ -208,6 +208,14 @@ Use the result of problem neopack to implement the so-called run-length encoding
     }
     dropHelper(x)
   }
+
+  def split[T](pos:Int,x:List[T]):(List[T],List[T]) = {
+    if(pos >= x.length){
+      throw new NoSuchElementException
+    }
+    (x.take(pos),x.takeRight(x.length-pos))
+  }
+
 }
 
 

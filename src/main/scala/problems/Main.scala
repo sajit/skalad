@@ -196,6 +196,18 @@ Use the result of problem neopack to implement the so-called run-length encoding
   def doubleUp_v3[T](x:List[T]) = {
     x.map{ el => List(el,el)}.flatten
   }
+
+  def dropNth[T](x:List[T],n:Int):List[T] = {
+    def dropHelper(aList:List[T]):List[T] = {
+      if(aList.length<n){
+        aList
+      }else{
+        val (prefix,suffix) = aList.splitAt(n-1)
+        prefix ++ dropHelper(suffix.tail)
+      }
+    }
+    dropHelper(x)
+  }
 }
 
 

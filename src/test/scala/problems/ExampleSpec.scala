@@ -135,4 +135,9 @@ class ExampleSpec extends FlatSpec with Matchers {
     Main.doubleUp_v3(input) should be (expected)
   }
 
+  it should "drop every 3rd element" in {
+    val input = List(5,7,8,2,5,7,9)
+    val expected = List(5,7,2,5,9)
+    Main.dropNth(input,3) should be (expected)
+  }
 }

@@ -130,7 +130,7 @@ class ExampleSpec extends FlatSpec with Matchers {
   it should "duplicate elements in three different ways" in {
     val input = List(1,5,7,8)
     val expected = List(1,1,5,5,7,7,8,8)
-    Main.doubleUp_v1(input) should be (expected)
+    Main.duplicateUp_v1(input,2) should be (expected)
     Main.doubleUp_v2(input) should be (expected)
     Main.doubleUp_v3(input) should be (expected)
   }

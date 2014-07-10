@@ -181,10 +181,10 @@ Use the result of problem neopack to implement the so-called run-length encoding
        } yield(b)
   }
 
-  def doubleUp_v1[T](x:List[T]):List[T] = {
+  def duplicateUp_v1[T](x:List[T],times:Int):List[T] = {
     //option 1
     for {el <- x;
-         t <- 0 until 2
+         t <- 0 until times
     }yield(el)
 
   }

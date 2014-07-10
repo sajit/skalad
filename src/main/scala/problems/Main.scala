@@ -180,6 +180,22 @@ Use the result of problem neopack to implement the so-called run-length encoding
          z <- 0 until a
        } yield(b)
   }
+
+  def doubleUp_v1[T](x:List[T]):List[T] = {
+    //option 1
+    for {el <- x;
+         t <- 0 until 2
+    }yield(el)
+
+  }
+
+  def doubleUp_v2[T](x:List[T]) = {
+    x.flatMap{ case el => List(el, el) }
+  }
+
+  def doubleUp_v3[T](x:List[T]) = {
+    x.map{ el => List(el,el)}.flatten
+  }
 }
 
 

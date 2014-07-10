@@ -120,4 +120,11 @@ class ExampleSpec extends FlatSpec with Matchers {
 
   }
 
+  it should "decode an encoded list" in {
+    val input = List((4,'a'), (1,'b'), (2,'c'), (2,'a'), (1,'d'), (4,'e'))
+    val expected = List('a','a','a','a','b','c','c','a','a','d','e','e','e','e')
+    val result = Main.decode(input)
+    result should be (expected)
+  }
+
 }

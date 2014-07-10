@@ -174,6 +174,12 @@ Use the result of problem neopack to implement the so-called run-length encoding
   def encodeAny(tuples:List[(Int,Char)]):List[Any] = {
     tuples.map((tuple) => if(tuple._1 > 1){tuple} else {tuple._2} )
   }
+
+  def decode(tuples:List[(Int,Char)]):List[Char] = {
+    for{ (a,b) <- tuples;
+         z <- 0 until a
+       } yield(b)
+  }
 }
 
 

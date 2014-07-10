@@ -163,4 +163,10 @@ class ExampleSpec extends FlatSpec with Matchers {
     val output = Main.extract(2,5,input)
     output should be (List(7,4,5))
   }
+
+  it should "rotate 4 times" in {
+    val input = List(4,6,7,4,5,6,8,1,6)
+    val expected = List(6,8,1,6,4,6,7,4,5)
+    Main.rotate(4,input) should be (expected)
+  }
 }

@@ -228,6 +228,11 @@ Use the result of problem neopack to implement the so-called run-length encoding
     anIndexedSeq.toList
   }
 
+  def rotate[T](times:Int,x:List[T]):List[T] = {
+
+    x.takeRight(times) ++ x.take(x.length-times)
+
+  }
 }
 
 

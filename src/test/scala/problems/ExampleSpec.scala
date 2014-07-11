@@ -177,4 +177,10 @@ class ExampleSpec extends FlatSpec with Matchers {
     el should be (8)
     list should be (expected)
   }
+
+  it should "insert into a position" in {
+    val input = List(5,7,8,2,5,7,9)
+    val result = Main.insertAt(3,input,0)
+    result should be (List(5,7,8,0,2,5,7,9))
+  }
 }

@@ -244,6 +244,11 @@ Use the result of problem neopack to implement the so-called run-length encoding
   def removeAt[T](pos:Int,x:List[T]):(List[T],T) = {
     (x.take(pos-1) ++ x.takeRight(x.length - pos),x(pos-1))
   }
+
+  def insertAt[T](pos:Int,x:List[T],el:T):List[T] = {
+    val (pre,post) = x.splitAt(pos)
+    pre ++ List(el) ++ post
+  }
 }
 
 

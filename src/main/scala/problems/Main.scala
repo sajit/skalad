@@ -233,6 +233,17 @@ Use the result of problem neopack to implement the so-called run-length encoding
     x.takeRight(times) ++ x.take(x.length-times)
 
   }
+
+  /**
+   * Takes a list and the position to remove an element from and return a tuple
+   * @param pos
+   * @param x
+   * @tparam T
+   * @return
+   */
+  def removeAt[T](pos:Int,x:List[T]):(List[T],T) = {
+    (x.take(pos-1) ++ x.takeRight(x.length - pos),x(pos-1))
+  }
 }
 
 

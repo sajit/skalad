@@ -169,4 +169,12 @@ class ExampleSpec extends FlatSpec with Matchers {
     val expected = List(6,8,1,6,4,6,7,4,5)
     Main.rotate(4,input) should be (expected)
   }
+
+  it should "return a tuple of everytihng other than element" in {
+    val input = List(5,7,8,2,5,7,9)
+    val expected = List(5,7,2,5,7,9)
+    val (list,el) = Main.removeAt(3,input)
+    el should be (8)
+    list should be (expected)
+  }
 }

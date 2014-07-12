@@ -191,9 +191,16 @@ class ExampleSpec extends FlatSpec with Matchers {
   it should "randomly select n items" in {
     val input = List(5,7,8,0,2,5,7,9)
     val result = Main.randomSelect(3,input)
+    println(result)
     result.length should be (3)
     result.foreach{ el => input.contains(el) should be (true)}
 
 
+  }
+
+  it should "do a lotto " in {
+    val result = Main.lotto(6,49)
+    result.length should be (6)
+    result.foreach{ el => el should be < 49}
   }
 }

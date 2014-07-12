@@ -272,6 +272,10 @@ Use the result of problem neopack to implement the so-called run-length encoding
       suffix.head :: randomSelect(count - 1, suffix.tail)
     }
   }
+
+  def lotto(count:Int,max:Int):List[Int] = {
+    {for{ i <- 1 to count} yield {Random.nextInt(max)}}.toList
+  }
 }
 
 

@@ -203,4 +203,11 @@ class ExampleSpec extends FlatSpec with Matchers {
     result.length should be (6)
     result.foreach{ el => el should be < 49}
   }
+
+  it should "shuffle but not lose" in {
+    val input = List(5,9,0,18,5,8,1,4,7)
+    val out = Main.shuffle(input)
+    println("Shuffled " + out)
+    out.foreach{el => input.contains(el) should be (true)}
+  }
 }

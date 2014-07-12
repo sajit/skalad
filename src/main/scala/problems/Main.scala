@@ -276,6 +276,10 @@ Use the result of problem neopack to implement the so-called run-length encoding
   def lotto(count:Int,max:Int):List[Int] = {
     {for{ i <- 1 to count} yield {Random.nextInt(max)}}.toList
   }
+
+  def shuffle[T](x:List[T]) = {
+    Random.shuffle(x)
+  }
 }
 
 

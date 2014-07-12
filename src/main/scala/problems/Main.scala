@@ -1,5 +1,7 @@
 package problems
 
+import scala.util.Random
+
 /**
  * http://aperiodic.net/phil/scala/s-99/
  */
@@ -253,6 +255,22 @@ Use the result of problem neopack to implement the so-called run-length encoding
   def range(start:Int,end:Int):List[Int] = {
     val indexedSeq = for{x <- start until end} yield(x)
     indexedSeq.toList
+  }
+
+  //TODO do some shapeless magic later to make sure that output list has that many elements
+  def randomSelect[T](count:Int,list:List[T]):List[T] = {
+    if (count <=0) {
+      return Nil;
+    }
+    val idx = Random.nextInt(list.length)
+    val (prefix, suffix) = list.splitAt(idx)
+    if (prefix.length > 1) {
+      val remaining = prefix.take(prefix.length - 1) ++ suffix
+      prefix.last :: randomSelect(count - 1, remaining)
+    }
+    else {
+      suffix.head :: randomSelect(count - 1, suffix.tail)
+    }
   }
 }
 

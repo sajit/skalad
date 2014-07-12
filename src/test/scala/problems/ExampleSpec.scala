@@ -187,4 +187,13 @@ class ExampleSpec extends FlatSpec with Matchers {
   it should "generate a range" in {
     Main.range(5,10) should be (List(5,6,7,8,9))
   }
+
+  it should "randomly select n items" in {
+    val input = List(5,7,8,0,2,5,7,9)
+    val result = Main.randomSelect(3,input)
+    result.length should be (3)
+    result.foreach{ el => input.contains(el) should be (true)}
+
+
+  }
 }

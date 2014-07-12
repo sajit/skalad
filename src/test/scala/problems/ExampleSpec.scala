@@ -183,4 +183,8 @@ class ExampleSpec extends FlatSpec with Matchers {
     val result = Main.insertAt(3,input,0)
     result should be (List(5,7,8,0,2,5,7,9))
   }
+
+  it should "generate a range" in {
+    Main.range(5,10) should be (List(5,6,7,8,9))
+  }
 }

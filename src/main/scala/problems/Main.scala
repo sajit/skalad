@@ -249,6 +249,11 @@ Use the result of problem neopack to implement the so-called run-length encoding
     val (pre,post) = x.splitAt(pos)
     pre ++ List(el) ++ post
   }
+
+  def range(start:Int,end:Int):List[Int] = {
+    val indexedSeq = for{x <- start until end} yield(x)
+    indexedSeq.toList
+  }
 }
 
 

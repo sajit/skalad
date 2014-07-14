@@ -210,4 +210,19 @@ class ExampleSpec extends FlatSpec with Matchers {
     println("Shuffled " + out)
     out.foreach{el => input.contains(el) should be (true)}
   }
+
+  it should "return samle length list for 1 selection" in {
+    val input = List(1,5,7,8,3,4,0)
+    val result = Main.combinations(1,input)
+    val oneSelects = List(List(1),List(5),List(7),List(8),List(3),List(4),List(0))
+    result should be (oneSelects)
+  }
+
+  it should "7c2 is 21" in {
+    val input = List(1,5,7,8,3,4,0)
+    val result = Main.combinations(2,input)
+    //println(result)
+    result.length should be (21)
+  }
+
 }

@@ -280,6 +280,33 @@ Use the result of problem neopack to implement the so-called run-length encoding
   def shuffle[T](x:List[T]) = {
     Random.shuffle(x)
   }
+
+  def combinations[T](k:Int,aList:List[T]):List[List[T]] = {
+
+    def combHelper(n:Int,x:List[T]):List[List[T]] = {
+      if(n<=1){
+        val indexedSeqOfList = for{el <-x}yield{List(el)}
+        indexedSeqOfList.toList
+      }
+      else{
+        x.flatMap{
+          el => {
+            val remaining = x.filterNot{otherElem => otherElem == el}
+            val ll = combHelper(n-1,remaining)
+            ll.map{aList => aList :+ el}
+          }
+        }
+
+      }
+
+    }
+    val aListOfLists:List[List[T]] = combHelper(k,aList) //this will have duplicates, since
+    //we care about selections and not order we remove duplicates
+    val listOfSets:List[Set[T]] = aListOfLists.map{someList => someList.toSet}
+    val uniqueListOfSets = listOfSets.distinct
+    val uniqueListOfLists = uniqueListOfSets.map{ aSet => aSet.toList}
+    uniqueListOfLists
+  }
 }
 
 

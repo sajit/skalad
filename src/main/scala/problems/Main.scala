@@ -309,6 +309,27 @@ Use the result of problem neopack to implement the so-called run-length encoding
   }
 
 
+<<<<<<< HEAD
+=======
+
+  def disjointSet[T](remaining:List[Int],remInput:List[T]):List[List[T]] = {
+    if(remaining.isEmpty){
+      Nil
+    }
+    else{
+      val currentChoose = remaining.head
+      if(currentChoose > remInput.length){
+        throw new IllegalArgumentException
+      }
+      else{
+        val indexSeq:IndexedSeq[T] = for{ i <- 0 until currentChoose} yield{remInput(Random.nextInt(remInput.length))}
+        indexSeq.toList :: disjointSet(remaining.tail,remInput.filter{x => !indexSeq.contains(x)})
+      }
+    }
+  }
+
+
+>>>>>>> e8da9649a025a7c218027cc9cc6e97038aa45084
 }
 
 

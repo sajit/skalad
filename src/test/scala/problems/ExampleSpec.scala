@@ -225,4 +225,13 @@ class ExampleSpec extends FlatSpec with Matchers {
     result.length should be (21)
   }
 
+  it should "get a disjoint set of numbers" in {
+    val input = List(1,5,7,8,3,4,0)
+    val result:List[List[Int]] = Main.disjointSet(List(2,2,3),input)
+    result.length should be (3)
+    val flattened = result.flatten
+    flattened.foreach{anEl => input.contains(anEl) should be (true)}
+    flattened.length should be (input.length)
+  }
+
 }

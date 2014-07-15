@@ -307,6 +307,8 @@ Use the result of problem neopack to implement the so-called run-length encoding
     val uniqueListOfLists = uniqueListOfSets.map{ aSet => aSet.toList}
     uniqueListOfLists
   }
+
+  def group
 }
 
 

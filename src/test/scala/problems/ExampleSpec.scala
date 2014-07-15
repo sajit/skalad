@@ -193,7 +193,7 @@ class ExampleSpec extends FlatSpec with Matchers {
     val result = Main.randomSelect(3,input)
     println(result)
     result.length should be (3)
-    result.foreach{ el => input.contains(el) should bes (true)}
+    result.foreach{ el => input.contains(el) should be (true)}
 
 
   }

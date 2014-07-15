@@ -308,7 +308,7 @@ Use the result of problem neopack to implement the so-called run-length encoding
     uniqueListOfLists
   }
 
-  def group
+
 }
 
 

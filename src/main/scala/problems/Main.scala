@@ -281,6 +281,13 @@ Use the result of problem neopack to implement the so-called run-length encoding
     Random.shuffle(x)
   }
 
+  /**
+   * Generate all possible combinations of aList C k
+   * @param k
+   * @param aList
+   * @tparam T
+   * @return
+   */
   def combinations[T](k:Int,aList:List[T]):List[List[T]] = {
 
     def combHelper(n:Int,x:List[T]):List[List[T]] = {
@@ -309,9 +316,13 @@ Use the result of problem neopack to implement the so-called run-length encoding
   }
 
 
-<<<<<<< HEAD
-=======
-
+  /**
+   * Generate a disjoint subset, with each set consisting of number elements as in remaining
+   * @param remaining
+   * @param remInput
+   * @tparam T
+   * @return
+   */
   def disjointSet[T](remaining:List[Int],remInput:List[T]):List[List[T]] = {
     if(remaining.isEmpty){
       Nil
@@ -329,7 +340,7 @@ Use the result of problem neopack to implement the so-called run-length encoding
   }
 
 
->>>>>>> e8da9649a025a7c218027cc9cc6e97038aa45084
+
 }
 
 

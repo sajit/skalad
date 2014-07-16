@@ -326,6 +326,8 @@ Use the result of problem neopack to implement the so-called run-length encoding
     }
   }
 
+  def sortListOfLists[T](ll:List[List[T]]):List[List[T]] = ll.sortBy{aList => aList.length}
+
 
 }
 

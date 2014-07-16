@@ -234,4 +234,12 @@ class ExampleSpec extends FlatSpec with Matchers {
     flattened.length should be (input.length)
   }
 
+  it should "sort lists based on length" in {
+    val input = List(List(4,65,6),List(),List(5),List(6,9,2,3,6,8),List(1,1,1))
+    val result = Main.sortListOfLists(input)
+    val anItr = result.sliding(2)
+    val iterResult = anItr.foldRight(true){(el,soFar) => {(el(0).length <= el(1).length) && soFar}}
+    iterResult should be (true)
+  }
+
 }

@@ -8,6 +8,10 @@ class SkaladInt(val anInt:Int) {
 
   import SkaladInt._
 
+  /**
+   * Calculates whether a number is prime
+   * @return
+   */
   def isPrime: Boolean = {
     if(anInt<2){false}
     else{

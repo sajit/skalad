@@ -20,6 +20,10 @@ class SkaladInt(val anInt:Int) {
 
 
   }
+
+  def isCoPrime(x:Int):Boolean = {
+    ArithmeticUtil.gcd1(anInt,x) == 1
+  }
 }
 object SkaladInt{
   implicit  def int2SkaladInt(i:Int):SkaladInt = new SkaladInt(i)

@@ -18,4 +18,17 @@ class SkaladIntTest extends FlatSpec with Matchers{
     one.isPrime should be (false)
   }
 
+  it should "identify coprimes" in {
+    val anInt:SkaladInt = 24
+    anInt.isCoPrime(60) should be (false)
+    val ten:SkaladInt = 10
+    ten.isCoPrime(20) should be (false)
+
+    val one:SkaladInt = 1
+    one.isCoPrime(31) should be (true)
+
+    val four:SkaladInt = 4
+    four.isCoPrime(9) should be (true)
+  }
+
 }

@@ -21,4 +21,9 @@ class ArithmeticUtilsTest  extends FlatSpec with Matchers{
 
   }
 
+  it should "show number of times a number is divisible" in {
+    ArithmeticUtil.times(2,16,0) should be (4)
+    ArithmeticUtil.times(3,16,0) should be (0)
+  }
+
 }

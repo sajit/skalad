@@ -28,5 +28,12 @@ object ArithmeticUtil {
   }
 
 
+  def times(factor:Int,multiple:Int,acc:Int):Int = {
+    if(multiple%factor != 0){
+      acc
+    }else{
+      times(factor,multiple/factor,acc+1)
+    }
+  }
 
 }

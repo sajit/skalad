@@ -38,6 +38,13 @@ class SkaladInt(val anInt:Int) {
     {for{ i <- 2 until anInt/2
          if(anInt%i==0 && i.isPrime)} yield(i)}.toList
   }
+
+  def primeFactorMultiplicity:Map[Int,Int] = {
+    val primeFactors = anInt.primeFactors
+    primeFactors.map{
+      aPf => (aPf,ArithmeticUtil.times(aPf,anInt,0))
+    }.toMap
+  }
 }
 object SkaladInt{
   implicit  def int2SkaladInt(i:Int):SkaladInt = new SkaladInt(i)

@@ -44,4 +44,16 @@ class SkaladIntTest extends FlatSpec with Matchers{
     result.foreach{ factor => expected.contains(factor) should be (true)}
   }
 
+  it should "show the multiplicy of factors" in {
+    val t15: SkaladInt = 315
+    val map = t15.primeFactorMultiplicity
+    map.get(3) should be(Some(2))
+    map.get(7) should be(Some(1))
+    map.get(5) should be(Some(1))
+    map.size should be (3)
+  }
+
+
+
+
 }

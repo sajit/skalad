@@ -31,4 +31,9 @@ class SkaladIntTest extends FlatSpec with Matchers{
     four.isCoPrime(9) should be (true)
   }
 
+  it should "get phis" in {
+    val nine:SkaladInt = 9
+    nine.phi.length should be (6)
+  }
+
 }

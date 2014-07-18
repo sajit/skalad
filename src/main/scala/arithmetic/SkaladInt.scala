@@ -24,6 +24,15 @@ class SkaladInt(val anInt:Int) {
   def isCoPrime(x:Int):Boolean = {
     ArithmeticUtil.gcd1(anInt,x) == 1
   }
+
+  /**
+   * Euler's so-called totient function phi(m) is defined as the number of positive integers r (1 <= r <= m) that are coprime to m.
+   * @return
+   */
+  def phi: List[Int] = {
+    {for{ r<- 1 to anInt
+        if(anInt.isCoPrime(r))} yield(r)}.toList
+  }
 }
 object SkaladInt{
   implicit  def int2SkaladInt(i:Int):SkaladInt = new SkaladInt(i)

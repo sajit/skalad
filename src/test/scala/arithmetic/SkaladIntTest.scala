@@ -36,4 +36,12 @@ class SkaladIntTest extends FlatSpec with Matchers{
     nine.phi.length should be (6)
   }
 
+  it should "get prime factors " in {
+    val sixty:SkaladInt = 60
+    val expected = Set(2,3,5)
+    val result = sixty.primeFactors
+    result.size should be (expected.size)
+    result.foreach{ factor => expected.contains(factor) should be (true)}
+  }
+
 }

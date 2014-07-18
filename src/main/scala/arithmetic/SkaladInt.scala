@@ -33,6 +33,11 @@ class SkaladInt(val anInt:Int) {
     {for{ r<- 1 to anInt
         if(anInt.isCoPrime(r))} yield(r)}.toList
   }
+
+  def primeFactors:List[Int] = {
+    {for{ i <- 2 until anInt/2
+         if(anInt%i==0 && i.isPrime)} yield(i)}.toList
+  }
 }
 object SkaladInt{
   implicit  def int2SkaladInt(i:Int):SkaladInt = new SkaladInt(i)

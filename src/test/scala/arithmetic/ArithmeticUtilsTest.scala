@@ -41,4 +41,13 @@ class ArithmeticUtilsTest  extends FlatSpec with Matchers{
 
   }
 
+  it should "remove pairs below threshold" in {
+     val result = ArithmeticUtil.goldbachFilteredPair(992,50)
+    //println(result)
+    result.foreach{case (x,y) => {x should be > 50
+    y should be > 50}
+    }
+
+  }
+
 }

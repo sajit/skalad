@@ -48,13 +48,24 @@ object ArithmeticUtil {
     if(x%2 != 0){
       throw new IllegalArgumentException("Not even. Not cool")
     }
+    val allPairs = goldbachPairs(x)
+
+    allPairs(0)
+  }
+
+  private def goldbachPairs(x:Int):List[(Int,Int)] = {
     val primes = primeList(2,x)
     val pairs = for{
       i <- primes
       if(primes.contains(x-i))
     }yield{(i,(x-i))}
     println(x + " has " + pairs.length + " prime pairs")
-    pairs(0)
+    pairs.toList
+  }
+
+  def goldbachFilteredPair(x:Int,threshold:Int):List[(Int,Int)] = {
+    val allPairs = goldbachPairs(x)
+    allPairs.filter{aPair => aPair._1 > threshold && aPair._2 > threshold}
   }
 
 }

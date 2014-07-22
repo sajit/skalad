@@ -33,5 +33,5 @@ object SkaLogic {
 
   def equ(a: Boolean, b: Boolean): Boolean = xor(a,b) == false
 
- 
+
 }

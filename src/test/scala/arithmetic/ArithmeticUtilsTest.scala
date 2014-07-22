@@ -32,4 +32,13 @@ class ArithmeticUtilsTest  extends FlatSpec with Matchers{
     result should be (expected)
   }
 
+  it should "determine goldbachs numbers" in {
+    val (x,y) = ArithmeticUtil.goldbach(28)
+    import  problems.SkaladInt._
+    x.isPrime should be (true)
+    y.isPrime should be (true)
+
+
+  }
+
 }

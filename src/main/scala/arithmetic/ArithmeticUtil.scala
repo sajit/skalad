@@ -44,4 +44,17 @@ object ArithmeticUtil {
     if(i.isPrime)}yield(i)
   }.toList
 
+  def goldbach(x:Int):(Int,Int) = {
+    if(x%2 != 0){
+      throw new IllegalArgumentException("Not even. Not cool")
+    }
+    val primes = primeList(2,x)
+    val pairs = for{
+      i <- primes
+      if(primes.contains(x-i))
+    }yield{(i,(x-i))}
+    println(x + " has " + pairs.length + " prime pairs")
+    pairs(0)
+  }
+
 }

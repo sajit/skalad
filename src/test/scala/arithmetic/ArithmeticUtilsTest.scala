@@ -26,4 +26,10 @@ class ArithmeticUtilsTest  extends FlatSpec with Matchers{
     ArithmeticUtil.times(3,16,0) should be (0)
   }
 
+  it should "list of primes in range" in {
+    val result = ArithmeticUtil.primeList(7,31)
+    val expected = List(7,11,13,17,19,23,29,31)
+    result should be (expected)
+  }
+
 }

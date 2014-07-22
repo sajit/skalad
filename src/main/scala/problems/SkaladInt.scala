@@ -1,4 +1,6 @@
-package arithmetic
+package problems
+
+import arithmetic.ArithmeticUtil
 
 /**
  * Taken from http://aperiodic.net/phil/scala/s-99/arithmetic1.scala
@@ -6,7 +8,7 @@ package arithmetic
  */
 class SkaladInt(val anInt:Int) {
 
-  import SkaladInt._
+  import problems.SkaladInt._
 
   /**
    * Calculates whether a number is prime
@@ -45,6 +47,8 @@ class SkaladInt(val anInt:Int) {
       aPf => (aPf,ArithmeticUtil.times(aPf,anInt,0))
     }.toMap
   }
+
+
 }
 object SkaladInt{
   implicit  def int2SkaladInt(i:Int):SkaladInt = new SkaladInt(i)

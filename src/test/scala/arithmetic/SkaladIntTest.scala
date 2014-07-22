@@ -7,7 +7,9 @@ import org.scalatest._
  * Created by skunnumkal on 7/16/14.
  */
 class SkaladIntTest extends FlatSpec with Matchers{
-  import arithmetic.SkaladInt
+
+  import problems.SkaladInt
+
   it should "identify primes" in {
     val anInt:SkaladInt = 17
     anInt.isPrime should be (true)

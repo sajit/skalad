@@ -1,5 +1,7 @@
 package arithmetic
 
+import problems.SkaladInt
+
 /**
  * Created by skunnumkal on 7/17/14.
  */
@@ -35,5 +37,11 @@ object ArithmeticUtil {
       times(factor,multiple/factor,acc+1)
     }
   }
+
+  def primeList(start:Int,end:Int):List[Int] = {
+    import SkaladInt._
+    for{ i <- start to end
+    if(i.isPrime)}yield(i)
+  }.toList
 
 }

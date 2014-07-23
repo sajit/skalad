@@ -7,14 +7,22 @@ package data.structures.trees
  */
 
 
-abstract class Tree[+T]
+abstract class Tree[+T]{
+  def height:Int
+}
 
-case class Node[T](value:T,left:Tree[T],right:Tree[T]) extends Tree[T]{
+case class Node[T](value:T,var left:Tree[T],var right:Tree[T]) extends Tree[T]{
   override def toString = "{"+value+",l:" + left.toString + ",r:" + right.toString + " }"
+  override def height:Int = {
+    Math.max(left.height,right.height) + 1
+  }
+
+
 }
 
 case object End extends Tree[Nothing] {
   override def toString = "."
+  override def height:Int = 0
 }
 
 object Node {

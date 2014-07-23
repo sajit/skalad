@@ -20,4 +20,6 @@ object LogicUtils {
     buildUp(n-1,initList)
   }
 
+
+
 }

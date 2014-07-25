@@ -14,4 +14,10 @@ class LogicUtilsTest extends FlatSpec with Matchers{
 
   }
 
+  it should "generate huffman codes" in {
+     val result = LogicUtils.huffman(List(('a', 45), ('b', 13), ('c', 12), ('d', 16), ('e', 9), ('f', 5)))
+     val expected = List(('a',"0"), ('b',"110"), ('c',"1110"), ('d',"10"), ('e',"11110"), ('f',"11111"))
+     result should be (expected)
+  }
+
 }

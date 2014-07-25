@@ -31,9 +31,9 @@ object LogicUtils {
   def huffman(tuples:List[(Char,Int)]):List[(Char,String)] = {
     var map:List[(Char,String)] = List()
     val sortedTuples = tuples.sortWith{(a,b) => a._2 < b._2}
-    val small1 = tuples(0)
-    val small2 = tuples(1)
-    val internalNode = InternalNode(LeafNode(small1._1,small1._2),LeafNode(small2._1,small2._2))
+    val small1 = sortedTuples(0)
+    val small2 = sortedTuples(1)
+    val internalNode = InternalNode(LeafNode(small2._1,small2._2),LeafNode(small1._1,small1._2))
     def buildTree(tupleList:List[(Char,Int)],node:InternalNode[Char]):InternalNode[Char] = {
       if(tupleList.isEmpty){
         node

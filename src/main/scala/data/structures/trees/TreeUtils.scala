@@ -62,4 +62,42 @@ object TreeUtils {
     root
   }
 
+  def balancedInsert(node:Tree[Char],value:Char):Tree[Char]= {
+    if(node.eq(End)){
+      Node(value,End,End)
+    }
+    else{
+      val internalNode = node.asInstanceOf[Node[Char]]
+      val leftCount = count(internalNode.left)
+      val rightCount = count(internalNode.right)
+      if(leftCount==rightCount){
+        if(Random.nextBoolean()){ //choose left
+          internalNode.left = balancedInsert(internalNode.left,value)
+        }else{
+          internalNode.right = balancedInsert(internalNode.right,value)
+        }
+      }
+      else if(leftCount>rightCount){
+        internalNode.right = balancedInsert(internalNode.right,value)
+      }
+      else{
+        internalNode.left = balancedInsert(internalNode.left,value)
+      }
+      internalNode
+    }
+  }
+  /**
+   * Number of |nodes in left subtree - nodes in right subtree| <= 1
+   * @param nums
+   * @return
+   */
+  def balanced(nums:List[Char]):Node[Char] = {
+    val root = Node(nums.head,End,End)
+    val xy:Tree[Char] = balancedInsert(root,root.value)
+    nums.tail.foreach{
+      el => balancedInsert(root,el)
+    }
+    root
+  }
+
 }

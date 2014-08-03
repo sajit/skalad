@@ -38,4 +38,11 @@ class TreeUtilTest extends FlatSpec with Matchers{
     searchTree(root);
   }
 
+  it should "create a balanced tree in terms of count" in {
+    val nums = List('a','x','i','d','y','g')
+    val root = TreeUtils.balanced(nums)
+    val diff = Math.abs(TreeUtils.count(root.left)-TreeUtils.count(root.right))
+    diff should be <= 1
+  }
+
 }

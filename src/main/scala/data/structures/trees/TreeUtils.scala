@@ -100,4 +100,21 @@ object TreeUtils {
     root
   }
 
+  def isMirrofOf[T](node1:Tree[T],node2:Tree[T]):Boolean = {
+    if(node1.isInstanceOf[Node[T]]){
+      if(node2.isInstanceOf[Node[T]]){
+          val iNode1 = node1.asInstanceOf[Node[T]]
+          val iNode2 = node2.asInstanceOf[Node[T]]
+          isMirrofOf(iNode1.left,iNode2.right) && isMirrofOf(iNode1.right,iNode2.left)
+      }
+      else{
+        false
+      }
+    }
+    else{
+      !node2.isInstanceOf[Node[T]]
+    }
+
+  }
+
 }

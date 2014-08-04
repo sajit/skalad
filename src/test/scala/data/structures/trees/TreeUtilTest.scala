@@ -45,4 +45,13 @@ class TreeUtilTest extends FlatSpec with Matchers{
     diff should be <= 1
   }
 
+  it should "be a mirror image" in {
+    val tree = Node('x',Node('a',End,Node('t',End,End)),Node('b',Node('d',End,End),End))
+    TreeUtils.isMirrofOf(tree.left,tree.right) should be (true)
+  }
+
+  it should "wont be a mirror image" in {
+    val tree = Node('x',Node('a',End,Node('t',End,End)),Node('b',Node('d',End,End),Node('b',End,End)))
+    TreeUtils.isMirrofOf(tree.left,tree.right) should be (false)
+  }
 }

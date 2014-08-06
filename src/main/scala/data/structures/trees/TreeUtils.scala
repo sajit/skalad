@@ -117,4 +117,31 @@ object TreeUtils {
 
   }
 
+  def bst(x:Int,node:Option[TreeNode[Int]]):TreeNode[Int] = {
+    node match {
+      case None => TreeNode(x,None,None)
+      case Some(node) => {
+        if(node.value<x){
+          node.right = Some(bst(x,node.right))
+        }
+        else if(node.value > x){
+          node.left = Some(bst(x,node.left))
+        }
+        node
+      }
+
+
+    }
+
+  }
+  def buildBST(nums:List[Int]):TreeNode[Int] = {
+    val root = TreeNode(nums.head,None,None)
+    nums.tail.foreach{
+      i => bst(i,Some(root))
+    }
+    root
+  }
+
+
+
 }

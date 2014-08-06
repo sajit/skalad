@@ -54,4 +54,14 @@ class TreeUtilTest extends FlatSpec with Matchers{
     val tree = Node('x',Node('a',End,Node('t',End,End)),Node('b',Node('d',End,End),Node('b',End,End)))
     TreeUtils.isMirrofOf(tree.left,tree.right) should be (false)
   }
+
+  it should "build up a BST" in {
+    val nums = List(10,15,5,7)
+    val root = TreeUtils.buildBST(nums)
+    root.value should be (10)
+    root.left.get.value should be (5)
+    root.left.get.right.get.value should be (7)
+
+
+  }
 }

@@ -32,4 +32,14 @@ object Node {
   def apply[T](value: T): Node[T] = Node(value, End, End)
 }
 
-case class TreeNode[T](value:T,var left : Option[TreeNode[T]],var right:Option[TreeNode[T]])
+case class TreeNode[T](value:T,var left : Option[TreeNode[T]],var right:Option[TreeNode[T]]) {
+
+  def this(t:T) = this(t,None,None)
+
+
+
+}
+object TreeNode{
+
+  def apply[T](t:T) = new TreeNode(t)
+}

@@ -15,6 +15,12 @@ class MooSpec extends FlatSpec with Matchers {
 
   it should "convert dec to binary" in {
     BumbleBee.toBinary(4).mkString should be ("100")
+    BumbleBee.toBinary(7).mkString should be("111")
+  }
+
+  it should "convert binary to dec" in {
+    //BumbleBee.binaryToDec(List('1','0','1')) should be (5)
+    BumbleBee.binaryToDec(List('1','0','0','0')) should be (8)
   }
 
 }

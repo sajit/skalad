@@ -28,4 +28,18 @@ object BumbleBee {
     }
     do2Binary(num,List())
   }
+
+  def binaryToDec(bin:List[Char]):Int = {
+    def doBinary2Dec(aList:List[Char],sum:Int):Int = {
+      if (aList.isEmpty) {
+        sum
+      } else {
+        val cur = aList.head.toInt-48 //because '0'.toInt  = 48
+        doBinary2Dec(aList.tail, sum + Math.pow(2, aList.tail.length).toInt * cur)
+
+
+      }
+    }
+    doBinary2Dec(bin,0)
+  }
 }

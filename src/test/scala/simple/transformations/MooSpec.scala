@@ -23,4 +23,8 @@ class MooSpec extends FlatSpec with Matchers {
     BumbleBee.binaryToDec(List('1','0','0','0')) should be (8)
   }
 
+  it should "convert dec to hex" in {
+     BumbleBee.decToHex(556) should be ("22C")
+  }
+
 }

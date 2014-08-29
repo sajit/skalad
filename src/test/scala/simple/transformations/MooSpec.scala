@@ -13,4 +13,8 @@ class MooSpec extends FlatSpec with Matchers {
     BumbleBee.decode(encoded) should be(url)
   }
 
+  it should "convert dec to binary" in {
+    BumbleBee.toBinary(4).mkString should be ("100")
+  }
+
 }

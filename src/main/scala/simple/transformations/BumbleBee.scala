@@ -1,5 +1,7 @@
 package simple.transformations
 
+import scala.collection.mutable
+
 /**
  * Created by sajit on 8/27/14.
  */
@@ -42,4 +44,17 @@ object BumbleBee {
     }
     doBinary2Dec(bin,0)
   }
+
+  def dec2Hex(num:Int):List[Char] = {
+    var x = num
+    var result:mutable.MutableList[Char] = new mutable.MutableList[Char]
+    while(x>0){
+      val quotient = x / 16
+      val remainder = x % 16
+      x = quotient
+      result += hexMap.get(remainder).get
+    }
+    result.toList.reverse
+  }
+  val hexMap = Map(0 -> '0',1 -> '1', 2 -> '2', 3 -> '3', 4 -> '4', 5 -> '5', 6 -> '6', 7 -> '7' , 8 -> '8', 9 -> '9',10 -> 'A',11 -> 'B',12 -> 'C',13-> 'D', 14-> 'E',15 -> 'F')
 }

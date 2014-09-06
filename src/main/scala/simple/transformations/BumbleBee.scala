@@ -32,7 +32,7 @@ object BumbleBee {
   }
 
   def binaryToDec(bin:List[Char]):Int = {
-    
+
     doBaseToDec(bin,0,2)
   }
   def doBaseToDec(aList:List[Char],sum:Int,base:Int):Int = {
@@ -67,4 +67,20 @@ object BumbleBee {
   }
   val hexMap = Map(0 -> '0',1 -> '1', 2 -> '2', 3 -> '3', 4 -> '4', 5 -> '5', 6 -> '6', 7 -> '7' , 8 -> '8', 9 -> '9',10 -> 'A',11 -> 'B',12 -> 'C',13-> 'D', 14-> 'E',15 -> 'F')
   val reverseHexMap = hexMap.map{ _.swap}
+
+  def decToHex(num:Int):String = {
+     var varNum = num
+     var result:List[Char] = List[Char]()
+     while(varNum>0){
+       val rem = getHexRemainder(varNum)
+       result = rem :: result
+       varNum = varNum/16
+
+     }
+    result.mkString
+  }
+  def getHexRemainder(aNum:Int):Char = {
+    dec2HexMapping(aNum%16)
+  }
+  val dec2HexMapping = Map(0 -> '0',1 -> '1',2-> '2',3->'3',4->'4',5->'5',6->'6',7->'7',8->'8',9->'9',10->'A',11->'B',12->'C',13->'D',14->'E',15->'F')
 }

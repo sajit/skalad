@@ -31,4 +31,8 @@ class MooSpec extends FlatSpec with Matchers {
   it should "convert hex to dec" in {
     BumbleBee.hex2Dec(List('2','2','C')) should be (556)
   }
+  it should "convert dec to hex" in {
+     BumbleBee.decToHex(556) should be ("22C")
+  }
+
 }

@@ -32,17 +32,22 @@ object BumbleBee {
   }
 
   def binaryToDec(bin:List[Char]):Int = {
-    def doBinary2Dec(aList:List[Char],sum:Int):Int = {
-      if (aList.isEmpty) {
-        sum
-      } else {
-        val cur = aList.head.toInt-48 //because '0'.toInt  = 48
-        doBinary2Dec(aList.tail, sum + Math.pow(2, aList.tail.length).toInt * cur)
-
-
+    
+    doBaseToDec(bin,0,2)
+  }
+  def doBaseToDec(aList:List[Char],sum:Int,base:Int):Int = {
+    if (aList.isEmpty) {
+      sum
+    } else {
+      val head = aList.head
+      val cur = base match {
+        case 2 => head.toInt - 48   //because '0'.toInt  = 48
+        case 16 => reverseHexMap.get(head).get
       }
+      doBaseToDec(aList.tail, sum + Math.pow(base, aList.tail.length).toInt * cur,base)
+
+
     }
-    doBinary2Dec(bin,0)
   }
 
   def dec2Hex(num:Int):List[Char] = {
@@ -56,5 +61,10 @@ object BumbleBee {
     }
     result.toList.reverse
   }
+
+  def hex2Dec(hex:List[Char]):Int = {
+    doBaseToDec(hex,0,16)
+  }
   val hexMap = Map(0 -> '0',1 -> '1', 2 -> '2', 3 -> '3', 4 -> '4', 5 -> '5', 6 -> '6', 7 -> '7' , 8 -> '8', 9 -> '9',10 -> 'A',11 -> 'B',12 -> 'C',13-> 'D', 14-> 'E',15 -> 'F')
+  val reverseHexMap = hexMap.map{ _.swap}
 }

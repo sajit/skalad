@@ -23,7 +23,7 @@ class MooSpec extends FlatSpec with Matchers {
     BumbleBee.binaryToDec(List('1','0','0','0')) should be (8)
   }
 
-  it should "convert dec to hex" in {
+  it should "convert dec to hex1" in {
     val dec = 556
     BumbleBee.dec2Hex(dec).mkString should be ("22C")
   }

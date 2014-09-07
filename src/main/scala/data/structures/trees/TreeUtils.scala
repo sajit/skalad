@@ -100,6 +100,17 @@ object TreeUtils {
     root
   }
 
+  /**
+   * This method tests whether two nodes are symmetric
+   * Rule 1 : Both node1 and node2 need to be Node class and not End Objects
+   * if either of them are of differnt types return false
+   * Check isMirrorOf on the left child of node1 and right child of node2
+   * Check isMirrofOf on the right child of node1 and left child of node1
+   * @param node1
+   * @param node2
+   * @tparam T
+   * @return
+   */
   def isMirrofOf[T](node1:Tree[T],node2:Tree[T]):Boolean = {
     if(node1.isInstanceOf[Node[T]]){
       if(node2.isInstanceOf[Node[T]]){
@@ -141,6 +152,8 @@ object TreeUtils {
     }
     root
   }
+
+
 
 
 

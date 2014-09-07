@@ -64,4 +64,9 @@ class TreeUtilTest extends FlatSpec with Matchers{
 
 
   }
+
+  it should "count leaves" in {
+    val tree = Node('a',Node('b',End,Node('c',End,End)),Node('d',Node('e',End,End),Node('f',End,End)))
+    TreeUtils.leafCount(tree) should be (3)
+  }
 }

@@ -153,8 +153,12 @@ object TreeUtils {
     root
   }
 
-
-
-
+  def leafCount[T](node:Tree[T]):Int = {
+    node match {
+      case Node(_,End,End) => 1
+      case End => 0
+      case node:Node[T] => leafCount(node.left) + leafCount(node.right)
+    }
+  }
 
 }

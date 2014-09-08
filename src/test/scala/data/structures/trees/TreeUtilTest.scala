@@ -69,4 +69,15 @@ class TreeUtilTest extends FlatSpec with Matchers{
     val tree = Node('a',Node('b',End,Node('c',End,End)),Node('d',Node('e',End,End),Node('f',End,End)))
     TreeUtils.leafCount(tree) should be (3)
   }
+
+  it should "collect leaves" in {
+    val cNode = Node('c',End,End)
+    val eNode = Node('e',End,End)
+    val fNode = Node('f',End,End)
+    val tree = Node('a',Node('b',End,cNode),Node('d',eNode,fNode))
+    val result = TreeUtils.leafCollect(tree)
+    result.length should be (3)
+    val leafNames = result.map{ x => x.value}
+    leafNames should be (List(cNode.value,eNode.value,fNode.value))
+  }
 }

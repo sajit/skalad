@@ -161,4 +161,15 @@ object TreeUtils {
     }
   }
 
+  def leafCollect[T](node:Tree[T]):List[Node[T]] = {
+     def doCollectLeaf(aNode:Tree[T],soFar:List[Node[T]]):List[Node[T]] = {
+       aNode match {
+         case Node(x,End,End) => Node(x,End,End) :: soFar
+         case End => soFar
+         case node:Node[T] => (doCollectLeaf(node.left,soFar) ++ doCollectLeaf(node.right,soFar)).distinct
+       }
+     }
+    doCollectLeaf(node,List[Node[T]]())
+  }
+
 }

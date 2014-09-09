@@ -166,7 +166,7 @@ object TreeUtils {
        aNode match {
          case Node(x,End,End) => Node(x,End,End) :: soFar
          case End => soFar
-         case node:Node[T] => (doCollectLeaf(node.left,soFar) ++ doCollectLeaf(node.right,soFar)).distinct
+         case node:Node[T] => (doCollectLeaf(node.left,soFar) ++ doCollectLeaf(node.right,soFar))
        }
      }
     doCollectLeaf(node,List[Node[T]]())

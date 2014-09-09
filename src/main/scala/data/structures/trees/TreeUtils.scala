@@ -172,4 +172,14 @@ object TreeUtils {
     doCollectLeaf(node,List[Node[T]]())
   }
 
+  def internalNodeCollection[T](node:Tree[T]):List[Node[T]] = {
+    def collectInternalNodes(aNode:Tree[T],soFar:List[Node[T]]):List[Node[T]] = {
+      aNode match {
+        case Node(x,End,End) => soFar
+        case End => soFar
+        case node:Node[T] => node :: (collectInternalNodes(node.left,soFar) ++ collectInternalNodes(node.right,soFar))
+      }
+    }
+    collectInternalNodes(node,List[Node[T]]())
+  }
 }

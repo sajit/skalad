@@ -9,13 +9,20 @@ object TreeUtils {
 
 
   def inOrder[T](node:Tree[T]):Unit = {
-    if(node.isInstanceOf[Node[T]]){
-      inOrder(node.asInstanceOf[Node[T]].left)
+    node match {
+      case aNode:Node[T] => {inOrder(aNode.left)
+        println(aNode)
+        inOrder(aNode.right)
+      }
+      case End => {}
     }
-    println(node)
-    if(node.isInstanceOf[Node[T]]){
-      inOrder(node.asInstanceOf[Node[T]].right)
-    }
+//    if(node.isInstanceOf[Node[T]]){
+//      inOrder(node.asInstanceOf[Node[T]].left)
+//    }
+//    println(node)
+//    if(node.isInstanceOf[Node[T]]){
+//      inOrder(node.asInstanceOf[Node[T]].right)
+//    }
   }
 
   def count[T](node:Tree[T]):Int = {
@@ -181,5 +188,27 @@ object TreeUtils {
       }
     }
     collectInternalNodes(node,List[Node[T]]())
+  }
+
+  def atLevel[T](level:Int,node:Tree[T]):List[Node[T]] = {
+    def traverseAndCollect(aNode:Tree[T],currentLevel:Int,soFar:List[Node[T]]):List[Node[T]] = {
+      if(currentLevel<level){
+         aNode match {
+           case someNode:Node[T] => traverseAndCollect(someNode.left,currentLevel+1,soFar) ++ traverseAndCollect(someNode.right,currentLevel+1,soFar)
+           case End => soFar
+         }
+      }
+      else if(currentLevel == level){
+        aNode match {
+          case someNode:Node[T] => someNode :: soFar
+          case End => soFar
+        }
+      }else {
+        soFar
+      }
+
+
+    }
+    traverseAndCollect(node,1,List[Node[T]]())
   }
 }

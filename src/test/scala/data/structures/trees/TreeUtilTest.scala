@@ -94,4 +94,18 @@ class TreeUtilTest extends FlatSpec with Matchers{
     val internalNodeNames = result.map{ x => x.value}
     internalNodeNames should be (List(tree.value,bNode.value,dNode.value))
   }
+
+  it should "collect internal nodes at level 2" in {
+
+    val cNode = Node('c',End,End)
+    val eNode = Node('e',End,End)
+    val fNode = Node('f',End,End)
+    val dNode = Node('d',eNode,fNode)
+    val bNode = Node('b',End,cNode)
+    val tree = Node('a',bNode,dNode)
+    val result = TreeUtils.atLevel(2,tree)
+    result.length should be (2)
+    val internalNodeNames = result.map{ x => x.value}
+    internalNodeNames should be (List(bNode.value,dNode.value))
+  }
 }

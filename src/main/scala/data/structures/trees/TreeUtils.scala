@@ -1,5 +1,9 @@
 package data.structures.trees
 
+import java.util
+
+import scala.collection.mutable.Queue
+import scala.collection.mutable.MutableList
 import scala.util.Random
 
 /**
@@ -210,5 +214,30 @@ object TreeUtils {
 
     }
     traverseAndCollect(node,1,List[Node[T]]())
+  }
+
+  def constructCompleteTree(height:Int):Node[Char] = ???
+
+  def bfs[T](node:Node[T]):List[T] = {
+    val queue = new Queue[Node[T]]
+    var result = MutableList[T]()
+    queue += node
+
+    while(!queue.isEmpty){
+      val currentNode = queue.dequeue()
+      println(currentNode.value + " Current node")
+      result += currentNode.value
+
+      currentNode.left match {
+        case leftNode:Node[T] => queue += leftNode
+        case End => queue
+      }
+      currentNode.right match {
+        case rightNode:Node[T] => queue += rightNode
+        case End => queue
+      }
+
+    }
+    result.toList
   }
 }

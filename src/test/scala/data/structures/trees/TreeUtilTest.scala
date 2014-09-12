@@ -83,12 +83,8 @@ class TreeUtilTest extends FlatSpec with Matchers{
 
   it should "collect internal nodes" in {
 
-    val cNode = Node('c',End,End)
-    val eNode = Node('e',End,End)
-    val fNode = Node('f',End,End)
-    val dNode = Node('d',eNode,fNode)
-    val bNode = Node('b',End,cNode)
-    val tree = Node('a',bNode,dNode)
+    val (dNode: Node[Char], bNode: Node[Char], tree: Node[Char]) = createTree
+
     val result = TreeUtils.internalNodeCollection(tree)
     result.length should be (3)
     val internalNodeNames = result.map{ x => x.value}
@@ -97,15 +93,25 @@ class TreeUtilTest extends FlatSpec with Matchers{
 
   it should "collect internal nodes at level 2" in {
 
-    val cNode = Node('c',End,End)
-    val eNode = Node('e',End,End)
-    val fNode = Node('f',End,End)
-    val dNode = Node('d',eNode,fNode)
-    val bNode = Node('b',End,cNode)
-    val tree = Node('a',bNode,dNode)
+    val (dNode: Node[Char], bNode: Node[Char], tree: Node[Char]) = createTree
     val result = TreeUtils.atLevel(2,tree)
     result.length should be (2)
     val internalNodeNames = result.map{ x => x.value}
     internalNodeNames should be (List(bNode.value,dNode.value))
+  }
+
+  def createTree: (Node[Char], Node[Char], Node[Char]) = {
+    val cNode = Node('c', End, End)
+    val eNode = Node('e', End, End)
+    val fNode = Node('f', End, End)
+    val dNode = Node('d', eNode, fNode)
+    val bNode = Node('b', End, cNode)
+    val tree = Node('a', bNode, dNode)
+    (dNode, bNode, tree)
+  }
+
+  it should "do BFS traversal " in {
+    val (dNode: Node[Char], bNode: Node[Char], tree: Node[Char]) = createTree
+    TreeUtils.bfs(tree) should be (List('a','b','d','c','e','f'))
   }
 }

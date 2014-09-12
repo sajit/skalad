@@ -114,4 +114,9 @@ class TreeUtilTest extends FlatSpec with Matchers{
     val (dNode: Node[Char], bNode: Node[Char], tree: Node[Char]) = createTree
     TreeUtils.bfs(tree) should be (List('a','b','d','c','e','f'))
   }
+
+  it should "do BFS traversal v2 " in {
+    val (dNode: Node[Char], bNode: Node[Char], tree: Node[Char]) = createTree
+    TreeUtils.bfs_v2(tree) should be (List('a','b','d','c','e','f'))
+  }
 }

@@ -2,6 +2,7 @@ package data.structures.trees
 
 import java.util
 
+import scala.collection.mutable
 import scala.collection.mutable.Queue
 import scala.collection.mutable.MutableList
 import scala.util.Random
@@ -234,5 +235,28 @@ object TreeUtils {
       }
     }
     result.toList
+  }
+  //http://codereview.stackexchange.com/questions/29699/bfs-and-dfs-in-scala
+  def bfs_v2[T](node:Node[T]):List[T] = {
+    def enQueueNext(queue: Queue[Node[T]], aNode: Tree[T]) {
+      aNode match {
+        case internalNode: Node[T] => queue += internalNode
+        case End => {}
+      }
+    }
+    def bfs_visit(queue:Queue[Node[T]],visited:List[T]):List[T] = {
+      if(queue.isEmpty){
+        visited
+      }
+      else{
+        val currentNode = queue.dequeue()
+        enQueueNext(queue, currentNode.left)
+        enQueueNext(queue,currentNode.right)
+        bfs_visit(queue,currentNode.value :: visited )
+      }
+    }
+    val aQueue = new mutable.Queue[Node[T]]()
+
+    bfs_visit(aQueue += node,List[T]()).reverse
   }
 }

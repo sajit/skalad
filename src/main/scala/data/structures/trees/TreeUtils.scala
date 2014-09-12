@@ -225,18 +225,13 @@ object TreeUtils {
 
     while(!queue.isEmpty){
       val currentNode = queue.dequeue()
-      println(currentNode.value + " Current node")
       result += currentNode.value
-
-      currentNode.left match {
-        case leftNode:Node[T] => queue += leftNode
-        case End => queue
+      if(currentNode.left.isInstanceOf[Node[T]]) {
+        queue += currentNode.left.asInstanceOf[Node[T]]
       }
-      currentNode.right match {
-        case rightNode:Node[T] => queue += rightNode
-        case End => queue
+      if(currentNode.right.isInstanceOf[Node[T]]) {
+        queue += currentNode.right.asInstanceOf[Node[T]]
       }
-
     }
     result.toList
   }

@@ -119,4 +119,16 @@ class TreeUtilTest extends FlatSpec with Matchers{
     val (dNode: Node[Char], bNode: Node[Char], tree: Node[Char]) = createTree
     TreeUtils.bfs_v2(tree) should be (List('a','b','d','c','e','f'))
   }
+
+  it should "edit children" in {
+    val aNode = Node('a',End,End)
+    aNode.left = Node('b',End,End)
+
+    aNode.height should be (2)
+    aNode.right should be (End)
+    aNode.left match {
+      case xNode:Node[Char] => xNode.value should be ('b')
+      case _ => assert(false)
+    }
+  }
 }

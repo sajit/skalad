@@ -217,7 +217,9 @@ object TreeUtils {
     traverseAndCollect(node,1,List[Node[T]]())
   }
 
-  def constructCompleteTree(height:Int):Node[Char] = ???
+  def constructCompleteTree(ll:List[Char]):Node[Char] = {
+    Node('c')
+  }
 
   def bfs[T](node:Node[T]):List[T] = {
     val queue = new Queue[Node[T]]

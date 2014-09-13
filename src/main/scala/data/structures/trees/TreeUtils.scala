@@ -217,8 +217,45 @@ object TreeUtils {
     traverseAndCollect(node,1,List[Node[T]]())
   }
 
-  def constructCompleteTree(ll:List[Char]):Node[Char] = {
-    Node('c')
+  def findNode(node: Node[Char], c: Char):Option[Node[Char]] = {
+    def checkChild(child:Tree[Char]): Option[Node[Char]] = {
+      child match {
+        case aNode: Node[Char] => findNode(aNode, c)
+        case End => None
+      }
+    }
+    if(node.value == c){
+      Some(node)
+    }else{
+      checkChild(node.left) match {
+        case Some(matchingNode) => Some(matchingNode)
+        case None => checkChild(node.right)
+      }
+    }
+  }
+
+  def constructCompleteTree(initList:List[Char]):Node[Char] = {
+    val ll = '1' :: initList
+    val root:Node[Char] = Node(initList.head,End,End)
+    for( i <- 1 until ll.length){
+      val el = ll(i)
+      val leftChildIdx = 2 * i
+      val rightChildIdx = 2 * i + 1
+      val leftChild = if(leftChildIdx<ll.length){
+        Node(ll(leftChildIdx),End,End)
+      }else {End}
+      val rightChild = if(rightChildIdx<ll.length) { Node(ll(rightChildIdx),End,End)} else End
+      findNode(root,el) match {
+        case Some(foundNode) => {
+             foundNode.left = leftChild
+             foundNode.right = rightChild
+        }
+        case None => {}
+      }
+
+
+    }
+    root
   }
 
   def bfs[T](node:Node[T]):List[T] = {

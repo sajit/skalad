@@ -131,4 +131,18 @@ class TreeUtilTest extends FlatSpec with Matchers{
       case _ => assert(false)
     }
   }
+
+  it should "find a Node" in {
+    val (aNode,bNode,rootNode) = createTree
+    TreeUtils.findNode(rootNode,'a') should be (Some(rootNode))
+    TreeUtils.findNode(rootNode,'z') should be (None)
+  }
+
+  it should "construct a tree from a list" in {
+    val ll = List('a','b','c','d','e','f')
+    val root = TreeUtils.constructCompleteTree(ll)
+    ll.foreach{ el => TreeUtils.findNode(root,el) should not be (None) }
+    root.height should be (3)
+    TreeUtils.count(root) should be (ll.length)
+  }
 }

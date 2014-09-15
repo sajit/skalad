@@ -296,7 +296,11 @@ object TreeUtils {
     bfs_visit(aQueue += node,List[T]()).reverse
   }
 
-  def getPosition[T](xNode:Node[T],treeRoot:Node[T]):(Int,Int) = ???
+  def getPosition[T](xNode:Node[T],treeRoot:Node[T]):(Int,Int) = {
+     val result = TreeUtils.inOrder(treeRoot)
+     val idx:Int = result.indexOf(xNode.value)
+    (idx,xNode.height)
+  }
 
 
 

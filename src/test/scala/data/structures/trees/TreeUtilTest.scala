@@ -145,4 +145,10 @@ class TreeUtilTest extends FlatSpec with Matchers{
     root.height should be (3)
     TreeUtils.count(root) should be (ll.length)
   }
+
+  it should "output the order list" in {
+    val (aNode,bNode,rootNode) = createTree
+    val result = TreeUtils.inOrder(rootNode)
+    result should be (List('b','c','a','e','d','f'))
+  }
 }

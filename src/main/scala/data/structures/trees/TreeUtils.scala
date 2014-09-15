@@ -13,21 +13,18 @@ import scala.util.Random
 object TreeUtils {
 
 
-  def inOrder[T](node:Tree[T]):Unit = {
-    node match {
-      case aNode:Node[T] => {inOrder(aNode.left)
-        println(aNode)
-        inOrder(aNode.right)
+  def inOrder[T](node:Tree[T]):List[T] = {
+    def doInOrder(aNode:Tree[T],soFar:List[T]):List[T] = {
+      aNode match {
+        case someNode:Node[T] => {
+          val leftResult = doInOrder(someNode.left,soFar)
+          val updated = someNode.value :: leftResult
+          doInOrder(someNode.right,updated)
+        }
+        case End => soFar
       }
-      case End => {}
     }
-//    if(node.isInstanceOf[Node[T]]){
-//      inOrder(node.asInstanceOf[Node[T]].left)
-//    }
-//    println(node)
-//    if(node.isInstanceOf[Node[T]]){
-//      inOrder(node.asInstanceOf[Node[T]].right)
-//    }
+    doInOrder(node,List()).reverse
   }
 
   def count[T](node:Tree[T]):Int = {
@@ -298,4 +295,9 @@ object TreeUtils {
 
     bfs_visit(aQueue += node,List[T]()).reverse
   }
+
+  def getPosition[T](xNode:Node[T],treeRoot:Node[T]):(Int,Int) = ???
+
+
+
 }

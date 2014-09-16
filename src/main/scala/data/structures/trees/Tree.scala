@@ -28,6 +28,11 @@ case object End extends Tree[Nothing] {
 
 }
 
+case class PositionedNode[+T](val value: T,val left: Tree[T], val right: Tree[T], x: Int, y: Int) extends Tree[T] {
+  override def toString = "T[" + x.toString + "," + y.toString + "](" + value.toString + " " + left.toString + " " + right.toString + ")"
+  override def height:Int = {Math.max(left.height,right.height) + 1}
+}
+
 object Node {
   def apply[T](value: T): Node[T] = Node(value, End, End)
 }

@@ -302,6 +302,21 @@ object TreeUtils {
     (idx,xNode.height)
   }
 
+//  def convert2Positional[T](rootNode:Node[T]):PositionedNode[T] = {
+//    def doConvert[T](jNode:Tree[T]):Tree[T] = {
+//      jNode match {
+//        case someNode:Node[T] => {
+//          val (x,y) = getPosition(someNode,rootNode)
+//          PositionedNode(someNode.value,doConvert(someNode.left),doConvert(someNode.right),x,y)
+//        }
+//        case End => {End}
+//      }
+//    }
+//    val (rootX,rootY) = getPosition(rootNode,rootNode)
+//    PositionedNode(rootNode.value,doConvert(rootNode.left),doConvert(rootNode.right),rootX,rootY)
+//
+//  }
+
 
 
 }

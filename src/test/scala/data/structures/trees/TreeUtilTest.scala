@@ -156,5 +156,15 @@ class TreeUtilTest extends FlatSpec with Matchers{
     val (x,y,root) = createTree
     val positionalTree = TreeUtils.convert2Positional(root)
     positionalTree.value should be (root.value)
+    val leftChild = positionalTree.left
+    val rightChild = positionalTree.right
+    leftChild match {
+      case End => assert(false)
+      case n:PositionedNode[Char] => n.value should be ('b')
+    }
+    rightChild match {
+      case End => assert(false)
+      case n:PositionedNode[Char] => n.value should be ('d')
+    }
   }
 }

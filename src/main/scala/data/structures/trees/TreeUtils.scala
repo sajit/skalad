@@ -307,6 +307,7 @@ object TreeUtils {
       jNode match {
         case someNode:Node[Char] => {
           val (x,y) = getPosition(someNode,rootNode)
+          //println("Setting position and node  : " + someNode.value )
           PositionedNode(someNode.value,doConvert(someNode.left),doConvert(someNode.right),x,y)
         }
         case End => {End}

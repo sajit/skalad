@@ -9,6 +9,7 @@ package data.structures.trees
 
 abstract class Tree[+T]{
   def height:Int
+  def stringRep:String
 
 }
 
@@ -17,20 +18,23 @@ case class Node[T](value:T,var left:Tree[T],var right:Tree[T]) extends Tree[T]{
   override def height:Int = {
     Math.max(left.height,right.height) + 1
   }
-
-
-
+  override def stringRep:String = {
+    val rep = value.toString + "("+ left.stringRep+","+right.stringRep+")"
+    val result:String = if(rep == value.toString + "(,)"){value.toString}else{rep}
+    result
+   }
 }
 
 case object End extends Tree[Nothing] {
   override def toString = "."
   override def height:Int = 0
-
+  override def stringRep = ""
 }
 
 case class PositionedNode[+T](val value: T,val left: Tree[T], val right: Tree[T], x: Int, y: Int) extends Tree[T] {
   override def toString = "T[" + x.toString + "," + y.toString + "](" + value.toString + " " + left.toString + " " + right.toString + ")"
   override def height:Int = {Math.max(left.height,right.height) + 1}
+  override def stringRep = "NOT_IMPLEMENTED"
 }
 
 object Node {

@@ -167,4 +167,18 @@ class TreeUtilTest extends FlatSpec with Matchers{
       case n:PositionedNode[Char] => n.value should be ('d')
     }
   }
+
+  it should "print out a string rep" in {
+    val (x,y,root) = createTree
+    val expected = "a(b(,c),d(e,f))"
+    root.stringRep should be (expected)
+   }
+
+  it should "print simple tests" in {
+    val a = Node('a',End,End)
+    End.stringRep should be ("")
+    a.stringRep should be ("a")
+    val b = Node("b",a,End)
+    b.stringRep should be("b(a,)")
+  }
 }

@@ -18,6 +18,11 @@ object TreeUtils {
     val updated = someNode.value :: leftResult
     doTraversal(someNode.right,updated)
   }
+
+  def preOrderTraversal[T](someNode:Node[T],soFar:List[T]):List[T] = {
+    someNode.value  :: doPreOrder(someNode.left,soFar) ++ doPreOrder(someNode.right,soFar)
+  }
+  //TODO refactor this to take a function as a parameter
   def doTraversal[T](aNode:Tree[T],soFar:List[T]):List[T] = {
     aNode match {
       case someNode:Node[T] => {
@@ -29,13 +34,19 @@ object TreeUtils {
   def inOrder[T](node:Tree[T]):List[T] = {
     doTraversal(node,List()).reverse
   }
+  def doPreOrder[T](aNode:Tree[T],soFar:List[T]):List[T] = {
+    aNode match {
+      case someNode:Node[T] => {
+        preOrderTraversal(someNode,soFar)
+      }
+      case End => soFar
+    }
+  }
   
-//  def preOrder[T](node:Tree[T]):List[T] = {
-//    def doPreOrder(aNode:Tree[T],soFar:List[T]):List[T] = {
-//      case someNode
-//    }
-//    doPreOrder(node,List()).reverse
-//  }
+  def preOrder[T](node:Tree[T]):List[T] = {
+
+    doPreOrder(node,List())
+  }
 
   def count[T](node:Tree[T]):Int = {
     if(node.eq(End)){

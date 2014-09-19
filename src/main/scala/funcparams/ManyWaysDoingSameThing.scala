@@ -10,4 +10,6 @@ object ManyWaysDoingSameThing {
     aList.map(foo)
   }
 
+  def generic2(foo:((Int,Int) => Int),base:Int,pow:Int):Int = foo(base,pow)
+
 }

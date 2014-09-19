@@ -13,19 +13,29 @@ import scala.util.Random
 object TreeUtils {
 
 
-  def inOrder[T](node:Tree[T]):List[T] = {
-    def doInOrder(aNode:Tree[T],soFar:List[T]):List[T] = {
-      aNode match {
-        case someNode:Node[T] => {
-          val leftResult = doInOrder(someNode.left,soFar)
-          val updated = someNode.value :: leftResult
-          doInOrder(someNode.right,updated)
-        }
-        case End => soFar
-      }
-    }
-    doInOrder(node,List()).reverse
+  def inOrderTraversal[T](someNode:Node[T],soFar:List[T]):List[T] = {
+    val leftResult = doTraversal(someNode.left,soFar)
+    val updated = someNode.value :: leftResult
+    doTraversal(someNode.right,updated)
   }
+  def doTraversal[T](aNode:Tree[T],soFar:List[T]):List[T] = {
+    aNode match {
+      case someNode:Node[T] => {
+        inOrderTraversal(someNode,soFar)
+      }
+      case End => soFar
+    }
+  }
+  def inOrder[T](node:Tree[T]):List[T] = {
+    doTraversal(node,List()).reverse
+  }
+  
+//  def preOrder[T](node:Tree[T]):List[T] = {
+//    def doPreOrder(aNode:Tree[T],soFar:List[T]):List[T] = {
+//      case someNode
+//    }
+//    doPreOrder(node,List()).reverse
+//  }
 
   def count[T](node:Tree[T]):Int = {
     if(node.eq(End)){

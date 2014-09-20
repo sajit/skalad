@@ -186,4 +186,11 @@ class TreeUtilTest extends FlatSpec with Matchers{
     val (_,_,root) = createTree
     root.dotString should be ("ab.c..de..f..")
   }
+
+  it should "convert postfix to tree" in {
+    val postFix = "...hg..f.ed..c.ba"
+    val root = TreeUtils.postFixNotationToTree(postFix)
+    val inOrderList = TreeUtils.inOrder(root)
+    inOrderList should be (List('b','c','a','e','f','d','h','g'))
+  }
 }

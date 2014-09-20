@@ -35,4 +35,13 @@ class MooSpec extends FlatSpec with Matchers {
      BumbleBee.decToHex(556) should be ("22C")
   }
 
+  it should "echk" in {
+
+      val aList:List[Any] = List(1,'a',"ponnu")
+      aList(0) should be (1)
+      aList(1) should be ('a')
+      aList(2) should be ("ponnu")
+
+  }
+
 }

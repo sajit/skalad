@@ -340,7 +340,39 @@ object TreeUtils {
   }
 
 
+//  def fromDotString[T](dotStringRep:String):Tree[T] = {
+//    def doFromDotString(rep:String,parent:Node[T]):Tree[T] = {
+//      rep.head match {
+//        case '.' => End
+//        case _  => {
+//          Node(_,doFromDotString(rep.tail),End)
+//
+//        }
+//      }
+//    }
+//    val root = Node(dotStringRep.head,End,End)
+//    doFromDotString(dotStringRep.tail,root)
+//    root
+//  }
 
+    def postFixNotationToTree[T](postFix:String):Tree[T] = {
+      var str = postFix
+      val stack:mutable.Stack[Any] = mutable.Stack[Any]()
+      while(!str.isEmpty){
+        val current = str.head
+        current match {
+          case '.' => stack.push(End)
+          case x:Char => {
+            val leftChild = stack.pop().asInstanceOf[Tree[T]]
+            val rightChild = stack.pop().asInstanceOf[Tree[T]]
+            val newNode = Node(x,leftChild,rightChild)
+            stack.push(newNode)
+          }
+        }
+        str = str.tail
+      }
+      stack.pop().asInstanceOf[Tree[T]]
+    }
 
 
 }

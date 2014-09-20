@@ -181,4 +181,9 @@ class TreeUtilTest extends FlatSpec with Matchers{
     val b = Node("b",a,End)
     b.stringRep should be("b(a,)")
   }
+
+  it should "print to Dot String" in {
+    val (_,_,root) = createTree
+    root.dotString should be ("ab.c..de..f..")
+  }
 }

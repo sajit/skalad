@@ -2,6 +2,8 @@ package arithmetic
 
 import problems.SkaladInt
 
+import scala.collection.mutable.Stack
+
 /**
  * Created by skunnumkal on 7/17/14.
  */
@@ -66,6 +68,33 @@ object ArithmeticUtil {
   def goldbachFilteredPair(x:Int,threshold:Int):List[(Int,Int)] = {
     val allPairs = goldbachPairs(x)
     allPairs.filter{aPair => aPair._1 > threshold && aPair._2 > threshold}
+  }
+
+  def postFixEvaluation(expr:String):Double = {
+    val stack = Stack[Double]()
+    var current = expr
+    while(!current.isEmpty){
+      current.head match {
+        case '+' => {
+          stack.push(stack.pop() + stack.pop())
+        }
+        case '-' => {
+          stack.push(-stack.pop() + stack.pop())
+        }
+        case '*' => {
+          stack.push(stack.pop() * stack.pop())
+        }
+        case '/' => {
+          stack.push((1/stack.pop()) * stack.pop())
+        }
+        case x: Char => {
+          stack.push(x.asDigit)
+        }
+      }
+
+      current = current.tail
+    }
+    stack.pop()
   }
 
 }

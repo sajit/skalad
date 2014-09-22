@@ -202,5 +202,5 @@ class TreeUtilTest extends FlatSpec with Matchers{
     inOrderList should be (List('b','c','a','e','f','d','h','g'))
   }
 
-  
+
 }

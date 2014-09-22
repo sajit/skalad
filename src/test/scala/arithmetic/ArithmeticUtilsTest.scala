@@ -50,4 +50,11 @@ class ArithmeticUtilsTest  extends FlatSpec with Matchers{
 
   }
 
+  it should "evaluate postfix expression" in {
+    val expr = "45*"
+    ArithmeticUtil.postFixEvaluation(expr) should be (20.0)
+    ArithmeticUtil.postFixEvaluation("46*4-") should be (20.0)
+    ArithmeticUtil.postFixEvaluation("63/5-") should be (-3.0)
+  }
+
 }

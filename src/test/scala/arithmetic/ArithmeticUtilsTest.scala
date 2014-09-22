@@ -57,4 +57,10 @@ class ArithmeticUtilsTest  extends FlatSpec with Matchers{
     ArithmeticUtil.postFixEvaluation("63/5-") should be (-3.0)
   }
 
+  it should "evaluate prefix expression" in {
+    val expr = "*45"
+    ArithmeticUtil.preFixEvaluation(expr) should be (20.0)
+    ArithmeticUtil.preFixEvaluation("-*464") should be (-20.0)
+    //ArithmeticUtil.preFixEvalutation("-/635") should be (-3.0)
+  }
 }

@@ -97,4 +97,47 @@ object ArithmeticUtil {
     stack.pop()
   }
 
+  def preFixEvaluation(expr:String):Double  = {
+    postFixEvaluation(expr.reverse)
+  }
+//  def preFixEvalutation(expr:String):Int = {
+//    var current = expr
+//    val stack = Stack[Any]()
+//    stack.push(current.head)
+//    var prev = current.head
+//    current = current.tail
+//    while(!current.isEmpty){
+//      println("Head " + current.head + "Prev " + prev)
+//
+//      current.head.isDigit match {
+//        case true => {
+//          if(prev.isDigit){
+//            val operand = stack.pop().asInstanceOf[Int]
+//            val operator:Char = stack.pop().asInstanceOf[Char]
+//            val result:Int = compute(operand,operator,current.head.asDigit)
+//            println("Computed result " + result.toString)
+//            stack.push(result.toString)
+//          }
+//          else{
+//            stack.push(current.head)
+//          }
+//        }
+//        case false => stack.push(current.head)
+//
+//      }
+//      prev = current.head
+//      current = current.tail
+//    }
+//    stack.pop().asInstanceOf[Int]
+//  }
+//
+//  private def compute(op1:Int,operator:Char,op2:Int):Int = {
+//    operator match {
+//      case '+' => op1 + op2
+//      case '-' => op1 - op2
+//      case '*' => op1 * op2
+//      case '/' => op1 / op2
+//    }
+//  }
+
 }

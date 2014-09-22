@@ -193,4 +193,14 @@ class TreeUtilTest extends FlatSpec with Matchers{
     val inOrderList = TreeUtils.inOrder(root)
     inOrderList should be (List('b','c','a','e','f','d','h','g'))
   }
+
+  it should "convert prefix to tree" in {
+    val postFix = "...hg..f.ed..c.ba"
+    val preFix:String = postFix.reverse
+    val root = TreeUtils.preFix1(preFix)
+    val inOrderList = TreeUtils.inOrder(root)
+    inOrderList should be (List('b','c','a','e','f','d','h','g'))
+  }
+
+  
 }

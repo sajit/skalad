@@ -374,5 +374,9 @@ object TreeUtils {
       stack.pop().asInstanceOf[Tree[T]]
     }
 
+  def preFix1[T](preFixString:String):Tree[T] = {
+    postFixNotationToTree(preFixString.reverse)
+  }
+
 
 }

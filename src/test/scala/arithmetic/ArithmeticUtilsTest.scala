@@ -55,6 +55,7 @@ class ArithmeticUtilsTest  extends FlatSpec with Matchers{
     ArithmeticUtil.postFixEvaluation(expr) should be (20.0)
     ArithmeticUtil.postFixEvaluation("46*4-") should be (20.0)
     ArithmeticUtil.postFixEvaluation("63/5-") should be (-3.0)
+    ArithmeticUtil.postFixEvaluation("442+*53-/") should be (12.0)
   }
 
   it should "evaluate prefix expression" in {

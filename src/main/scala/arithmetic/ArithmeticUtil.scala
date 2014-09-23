@@ -97,47 +97,41 @@ object ArithmeticUtil {
     stack.pop()
   }
 
-  def preFixEvaluation(expr:String):Double  = {
-    postFixEvaluation(expr.reverse)
+  def compute(op1: Int, operator: Char, op2: Int): Int = {
+      operator match {
+        case '+' => op1 + op2
+        case '-' => op1 - op2
+        case '*' => op1 * op2
+        case '/' => op1 / op2
+      }
   }
-//  def preFixEvalutation(expr:String):Int = {
-//    var current = expr
-//    val stack = Stack[Any]()
-//    stack.push(current.head)
-//    var prev = current.head
-//    current = current.tail
-//    while(!current.isEmpty){
-//      println("Head " + current.head + "Prev " + prev)
-//
-//      current.head.isDigit match {
-//        case true => {
-//          if(prev.isDigit){
-//            val operand = stack.pop().asInstanceOf[Int]
-//            val operator:Char = stack.pop().asInstanceOf[Char]
-//            val result:Int = compute(operand,operator,current.head.asDigit)
-//            println("Computed result " + result.toString)
-//            stack.push(result.toString)
-//          }
-//          else{
-//            stack.push(current.head)
-//          }
-//        }
-//        case false => stack.push(current.head)
-//
-//      }
-//      prev = current.head
-//      current = current.tail
-//    }
-//    stack.pop().asInstanceOf[Int]
-//  }
-//
-//  private def compute(op1:Int,operator:Char,op2:Int):Int = {
-//    operator match {
-//      case '+' => op1 + op2
-//      case '-' => op1 - op2
-//      case '*' => op1 * op2
-//      case '/' => op1 / op2
-//    }
-//  }
+
+  def preFixEvaluation(expr:String):Int  = {
+    val stack = Stack[Any]()
+    var current = expr
+    stack.push(current.head)
+    current = current.tail
+
+    while(!current.isEmpty){
+     // println("Stack Top " + stack.top + " Current Head " + current.head)
+      current.head.isDigit match {
+        case false => stack.push(current.head)
+        case true => {
+          var result = current.head.asDigit
+          while(!stack.isEmpty && stack.top.isInstanceOf[Int]){
+            val operand = stack.pop().asInstanceOf[Int]
+            val operator = stack.pop().asInstanceOf[Char]
+            result = compute(operand,operator,result)
+          }
+
+          stack.push(result)
+        }
+      }
+      current = current.tail
+    }
+    //println(stack.size + " Stack size")
+    stack.pop().asInstanceOf[Int]
+  }
+
 
 }

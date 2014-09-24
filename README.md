@@ -1,4 +1,4 @@
 skalad
 ======
-Not figured out stuff yet.
+Not figured  yet.
 Write scala. Learn scala.

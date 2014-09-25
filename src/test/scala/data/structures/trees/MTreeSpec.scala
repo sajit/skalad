@@ -11,7 +11,14 @@ class MTreeSpec extends FlatSpec with Matchers{
     val mt1 = MTree("d")
     val mt2 = MTree("d",List())
 
-    mt1 should be eq(mt2)
+    mt1.value should be (mt2.value)
+    mt1.nodeCount() should be (1)
+    mt2.nodeCount() should be (1)
+  }
+
+  it should "count generations " in {
+    MTree('a', List(MTree('f'))).nodeCount should be (2)
+    MTree('a', List(MTree('f',List(MTree('g'))))).nodeCount should be (3)
   }
 
 }

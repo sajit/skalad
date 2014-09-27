@@ -33,4 +33,9 @@ class MTreeSpec extends FlatSpec with Matchers{
     val subList:List[String] = MTreeUtils.processIndices(in,idxList)
     subList should be (List("fg^^","c^","bd^e^^"))
   }
+
+  it should "split when zeroed" in {
+    val in:String = "fg^^c^bd^e^^"
+    MTreeUtils.splitWhenZeroed(in) should be (List(9,7,1))
+  }
 }

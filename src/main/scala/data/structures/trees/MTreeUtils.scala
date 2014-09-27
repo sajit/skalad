@@ -32,7 +32,21 @@ object MTreeUtils {
 
   }
 
-  def splitWhenZeroed(s: String): List[Int] = ???
+  def splitWhenZeroed(s: String): List[Int] = {
+    def doSplit(rem:String,soFar:List[Int],sum:Int):List[Int] = {
+      if(rem.isEmpty){
+        soFar
+
+      }
+      else{
+        val head = rem.head
+        val diff = if(head == '^'){ -1} else { 1}
+        val newList = if(sum+diff == 0){rem.length :: soFar} else {soFar}
+        doSplit(rem.tail,newList,sum+diff)
+      }
+    }
+    doSplit(s,List(),0).reverse
+  }
 
   def partitionToSubStrings(str:String):List[String] = {
     val idx:List[Int] = splitWhenZeroed(str)

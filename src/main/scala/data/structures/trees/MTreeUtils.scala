@@ -1,4 +1,5 @@
 package data.structures.trees
+import scala.collection.mutable.MutableList
 
 /**
  * Created by sajit on 9/25/14.
@@ -6,22 +7,28 @@ package data.structures.trees
 object MTreeUtils {
 
   def buildTree(str:String):MTree[Char] = {
-    def buildChildren(rem:String,soFar:List[MTree[Char]]):List[MTree[Char]] = {
-      if(rem.isEmpty){
-        soFar
-      }
-      else{
-        val head = rem.head
-        if(head == '^'){
-          soFar
+      def foo(aStr:String,current:MTree[Char]):(String,MTree[Char]) = {
+        if(aStr.isEmpty){
+          (aStr,current)
+        }
+        if(aStr.head == '^'){
+          (aStr.tail,current)
         }
         else{
-          val currentNode = MTree(head,buildChildren(rem.tail,List[MTree[Char]]()))
-          currentNode :: soFar
+          foo(aStr.tail,MTree(aStr.head))
         }
       }
-    }
-    MTree(str.head,buildChildren(str.tail,List[MTree[Char]]()))
+      var rem = str
+      var children = MutableList[MTree[Char]]()
+      while(!rem.isEmpty){
+        val (rx,child) = foo(rem.tail,MTree(rem.head))
+        rem = rx
+        children += child
+      }
+      MTree(rem.head,children.toList)
+
+
+
   }
 
 }

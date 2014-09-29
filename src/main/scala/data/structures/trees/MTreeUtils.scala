@@ -32,6 +32,11 @@ object MTreeUtils {
 
   }
 
+  /**
+   * Should return indices of all partitions for a string
+   * @param s
+   * @return
+   */
   def splitWhenZeroed(s: String): List[Int] = {
     def doSplit(rem:String,soFar:List[Int],sum:Int):List[Int] = {
       if(rem.isEmpty){
@@ -48,11 +53,23 @@ object MTreeUtils {
     doSplit(s,List(),0).reverse
   }
 
+  /**
+   * Given a string partition it into substrings that represent subtrees
+   * @param str
+   * @return
+   */
   def partitionToSubStrings(str:String):List[String] = {
     val idx:List[Int] = splitWhenZeroed(str)
     processIndices(str, idx)
   }
 
+  /**
+   * Helper method that returns a list of strings given the original string
+   * and list of indices to split it
+   * @param str
+   * @param idx
+   * @return
+   */
   def processIndices(str: String, idx: List[Int]): List[String] = {
     val endIdx = idx.map { el => str.length - el}
     val tuples: List[(Int, Int)] = endIdx.sliding(2).map { aList => (aList(0)+1, aList(1))}.toList

@@ -21,11 +21,6 @@ class MTreeSpec extends FlatSpec with Matchers{
     MTree('a', List(MTree('f',List(MTree('g'))))).nodeCount should be (3)
   }
 
-//  it should "generate build a Tree" in {
-//    val expected = MTree('a', List(MTree('f', List(MTree('g'))), MTree('c'), MTree('b', List(MTree('d'), MTree('e')))))
-//    val in = "afg^^c^bd^e^^^"
-//    MTreeUtils.buildTree(in) should be (expected)
-//  }
 
   it should "process indices correctly" in {
     val idxList:List[Int] = List(9,7,1)
@@ -48,4 +43,11 @@ class MTreeSpec extends FlatSpec with Matchers{
   it should "split when zeroed base case" in {
     MTreeUtils.splitWhenZeroed("g^") should be (List(1))
   }
+
+
+    it should "generate build a Tree" in {
+      val expected = MTree('a', List(MTree('f', List(MTree('g'))), MTree('c'), MTree('b', List(MTree('d'), MTree('e')))))
+      val in = "afg^^c^bd^e^^^"
+      MTreeUtils.buildTree(in) should be (expected)
+    }
 }

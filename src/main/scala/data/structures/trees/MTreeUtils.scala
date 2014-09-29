@@ -7,31 +7,6 @@ import scala.collection.mutable.MutableList
  */
 object MTreeUtils {
 
-  def buildTree(str:String):MTree[Char] = {
-      def foo(aStr:String,current:MTree[Char]):(String,MTree[Char]) = {
-        if(aStr.isEmpty){
-          (aStr,current)
-        }
-        if(aStr.head == '^'){
-          (aStr.tail,current)
-        }
-        else{
-          foo(aStr.tail,MTree(aStr.head))
-        }
-      }
-      var rem = str
-      var children = MutableList[MTree[Char]]()
-      while(!rem.isEmpty){
-        val (rx,child) = foo(rem.tail,MTree(rem.head))
-        rem = rx
-        children += child
-      }
-      MTree(rem.head,children.toList)
-
-
-
-  }
-
   /**
    * Should return indices of all partitions for a string
    * @param s
@@ -54,16 +29,6 @@ object MTreeUtils {
   }
 
   /**
-   * Given a string partition it into substrings that represent subtrees
-   * @param str
-   * @return
-   */
-  def partitionToSubStrings(str:String):List[String] = {
-    val idx:List[Int] = splitWhenZeroed(str)
-    processIndices(str, idx)
-  }
-
-  /**
    * Helper method that returns a list of strings given the original string
    * and list of indices to split it
    * @param str
@@ -82,5 +47,27 @@ object MTreeUtils {
     val allTuples: List[(Int, Int)] = ((0, endIdx(0)) :: tuples)
 
     allTuples.map { tuple => str.substring(tuple._1, tuple._2+1)}
+  }
+
+  /**
+   * Given a string partition it into substrings that represent subtrees
+   * @param str
+   * @return
+   */
+  def partitionToSubStrings(str:String):List[String] = {
+    val idx:List[Int] = splitWhenZeroed(str)
+    processIndices(str, idx)
+  }
+
+  def buildTree(str:String):MTree[Char] = {
+    if(str.length == 2 && str.charAt(1) == '^'){
+        MTree(str.charAt(0))
+    }
+    else{
+      val subTrees:List[String] = partitionToSubStrings(str.substring(1,str.length-1))
+      val children:List[MTree[Char]] = subTrees.map{aSubtreePattern => buildTree(aSubtreePattern)}
+      MTree(str.charAt(0),children)
+    }
+
   }
 }

@@ -50,4 +50,11 @@ class MTreeSpec extends FlatSpec with Matchers{
       val in = "afg^^c^bd^e^^^"
       MTreeUtils.buildTree(in) should be (expected)
     }
+
+  it should "generate a single node" in {
+    val in = "g^"
+    val result = MTreeUtils.buildTree(in)
+    result.value should be ('g')
+    result should be (MTree('g'))
+  }
 }

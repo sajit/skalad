@@ -72,8 +72,15 @@ object MTreeUtils {
    */
   def processIndices(str: String, idx: List[Int]): List[String] = {
     val endIdx = idx.map { el => str.length - el}
-    val tuples: List[(Int, Int)] = endIdx.sliding(2).map { aList => (aList(0)+1, aList(1))}.toList
+    println("End Idxes" + endIdx)
+    val tuples: List[(Int, Int)] = if(endIdx.length > 1){
+      endIdx.sliding(2).map { aList => (aList(0)+1, aList(1))}.toList
+    }else{
+      Nil
+    }
+    println(tuples)
     val allTuples: List[(Int, Int)] = ((0, endIdx(0)) :: tuples)
+
     allTuples.map { tuple => str.substring(tuple._1, tuple._2+1)}
   }
 }

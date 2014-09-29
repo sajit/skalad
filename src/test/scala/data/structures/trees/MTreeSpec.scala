@@ -38,4 +38,14 @@ class MTreeSpec extends FlatSpec with Matchers{
     val in:String = "fg^^c^bd^e^^"
     MTreeUtils.splitWhenZeroed(in) should be (List(9,7,1))
   }
+
+  it should "test base case for partitioning" in {
+    val idxList:List[Int]=List(1)
+    val in:String = "g^"
+    MTreeUtils.processIndices(in,idxList) should be (List("g^"))
+  }
+
+  it should "split when zeroed base case" in {
+    MTreeUtils.splitWhenZeroed("g^") should be (List(1))
+  }
 }

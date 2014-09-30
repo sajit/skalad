@@ -68,4 +68,10 @@ object MTreeUtils {
     }
 
   }
+
+  def dfs[T](node:MTree[T]):Unit = {
+    println(node.value)
+    node.children.foreach(dfs)
+  }
+  def dfsAndCount[T](node:MTree[T],current:Int):Int = ???
 }

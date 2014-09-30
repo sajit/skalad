@@ -67,8 +67,13 @@ class MTreeSpec extends FlatSpec with Matchers{
   }
 
   it should "calculate internal paths 1" in {
-    val tree = MTree('a', List(MTree('f', List(MTree('g'))), MTree('c'), MTree('b', List(MTree('d'), MTree('e')))))
-    //tree.internalPathLength() should be (9)
+    val tree = MTree('a', List(MTree('f', List(MTree('g')))))
+    tree.internalPathLength() should be (3)
 
+  }
+
+  it should "print out nodes in dfs" in {
+    val tree = MTree('a', List(MTree('f', List(MTree('g'))), MTree('c'), MTree('b', List(MTree('d'), MTree('e')))))
+    MTreeUtils.dfs(tree)
   }
 }

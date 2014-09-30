@@ -17,11 +17,14 @@ case class MTree[+T](value: T, children: List[MTree[T]]) {
   def this(value: T) = this(value, List())
   override def toString = "M(" + value.toString + " {" + children.map(_.toString).mkString(",") + "})"
   def nodeCount():Int = children.foldRight(1)((child,soFar) => child.nodeCount()+soFar)
+
+  def internalPathLength():Int = children.foldRight(0)((child,soFar) => child.internalPathLength()+1+soFar)
 }
 
 object MTree {
   def apply[T](value: T) = new MTree(value, List())
   //def apply[T](value: T, children: List[MTree[T]]) = new MTree(value, children)
+
 
 
 }

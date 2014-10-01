@@ -1,5 +1,5 @@
 package data.structures.trees
-import scala.collection.mutable.MutableList
+
 
 
 /**
@@ -70,8 +70,17 @@ object MTreeUtils {
   }
 
   def dfs[T](node:MTree[T]):Unit = {
-    println(node.value)
+    //println(node.value)
     node.children.foreach(dfs)
   }
   def dfsAndCount[T](node:MTree[T],current:Int):Int = ???
+
+  def nodeHeight[T](node:MTree[T],height:Int,soFar:List[Int]):List[Int] = {
+    println("Current node " + node.value + "Height " + height)
+     val newList = soFar.updated(height,soFar(height)+1)
+    println("Created list " + newList)
+    val ll:List[Int] = node.children.flatMap{ child => nodeHeight(child,height+1,newList)}
+    ll
+
+  }
 }

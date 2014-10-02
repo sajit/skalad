@@ -28,7 +28,7 @@ case class MTree[+T](value: T, children: List[MTree[T]]) {
   //def internalPathLength():Int = children.foldRight(0)((child,soFar) => child.internalPathLength()+1+soFar)
   //attempt 1
   def internalPathLength():Int = {
-          val result:List[Int] = MTreeUtils.nodeHeight(this,0,List(0,0,0))
+          val result:List[Int] = MTreeUtils.nodeHeight(this,0,List.fill(this.height)(0))
           result.zipWithIndex.foldRight(0)((tuple,currentSum) => ((tuple._1* tuple._2) + currentSum) )
   }
 }

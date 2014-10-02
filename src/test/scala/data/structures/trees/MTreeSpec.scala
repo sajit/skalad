@@ -67,11 +67,16 @@ class MTreeSpec extends FlatSpec with Matchers{
   }
 
   //TODO fixme
-//  it should "calculate internal paths 1" in {
-//    val tree = MTree('a', List(MTree('f', List(MTree('g')))))
-//    tree.internalPathLength() should be (3)
-//
-//  }
+  it should "calculate internal paths 1" in {
+    val tree = MTree('a', List(MTree('f', List(MTree('g')))))
+    tree.internalPathLength() should be (3)
+
+  }
+
+  it should "calculate internal path lengths 2 " in {
+    val tree = MTree('a', List(MTree('f', List(MTree('g'))), MTree('c'), MTree('b', List(MTree('d'), MTree('e')))))
+    tree.internalPathLength() should be (9)
+  }
 
   it should "print out nodes in dfs" in {
     val tree = MTree('a', List(MTree('f', List(MTree('g'))), MTree('c'), MTree('b', List(MTree('d'), MTree('e')))))
@@ -82,6 +87,14 @@ class MTreeSpec extends FlatSpec with Matchers{
     val tree = MTree('a', List(MTree('f', List(MTree('g'))), MTree('c'), MTree('b', List(MTree('d'), MTree('e')))))
     val nodeHeights = MTreeUtils.nodeHeight(tree,0,List(0,0,0))
     nodeHeights should be (List(1,3,3))
+
+  }
+
+  it should "calculate heights" in {
+    MTree('a', List(MTree('f', List(MTree('g'))), MTree('c'), MTree('b', List(MTree('d'), MTree('e'))))).height should be (3)
+    MTree('a', List(MTree('f', List(MTree('g'))))).height should be (3)
+    MTree('f', List(MTree('g'))).height should be (2)
+    MTree('a').height should be (1)
 
   }
 }

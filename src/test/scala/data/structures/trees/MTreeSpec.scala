@@ -80,7 +80,7 @@ class MTreeSpec extends FlatSpec with Matchers{
 
   it should "get nodes and their heights" in {
     val tree = MTree('a', List(MTree('f', List(MTree('g'))), MTree('c'), MTree('b', List(MTree('d'), MTree('e')))))
-    val nodeHeights = MTreeUtils.nodeHeight(tree,0,List(0,0,0,0,0,0,0))
+    val nodeHeights = MTreeUtils.nodeHeight(tree,0,List(0,0,0))
     nodeHeights should be (List(1,3,3))
 
   }

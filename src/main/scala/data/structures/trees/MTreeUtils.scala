@@ -79,8 +79,7 @@ object MTreeUtils {
     println("Current node " + node.value + "Height " + height)
      val newList = soFar.updated(height,soFar(height)+1)
     println("Created list " + newList)
-    val ll:List[Int] = node.children.flatMap{ child => nodeHeight(child,height+1,newList)}
-    ll
+    node.children.foldRight(newList)((child,currentList) => nodeHeight(child,height+1,currentList))
 
   }
 }

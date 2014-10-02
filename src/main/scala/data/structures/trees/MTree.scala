@@ -17,8 +17,14 @@ case class MTree[+T](value: T, children: List[MTree[T]]) {
   def this(value: T) = this(value, List())
   override def toString = "M(" + value.toString + " {" + children.map(_.toString).mkString(",") + "})"
   def nodeCount():Int = children.foldRight(1)((child,soFar) => child.nodeCount()+soFar)
+  def height:Int = ???
 
-  def internalPathLength():Int = children.foldRight(0)((child,soFar) => child.internalPathLength()+1+soFar)
+  //def internalPathLength():Int = children.foldRight(0)((child,soFar) => child.internalPathLength()+1+soFar)
+  //attempt 1
+  def internalPathLength():Int = {
+          val result:List[Int] = MTreeUtils.nodeHeight(this,0,List(0,0,0))
+          result.zipWithIndex.foldRight(0)((tuple,currentSum) => ((tuple._1* tuple._2) + currentSum) )
+  }
 }
 
 object MTree {

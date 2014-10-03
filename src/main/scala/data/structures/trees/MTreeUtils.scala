@@ -80,4 +80,16 @@ object MTreeUtils {
     node.children.foldRight(newList)((child,currentList) => nodeHeight(child,height+1,currentList))
 
   }
+
+  def postOrder[T](node:MTree[T]):List[T] = {
+
+      val list = for{
+        child <- node.children
+      }yield(postOrder(child))
+    list.foreach(println)
+    val rls = list.map{ l => l.reverse}
+    (node.value :: rls.flatten)
+
+
+  }
 }

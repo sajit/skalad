@@ -87,9 +87,10 @@ object MTreeUtils {
         child <- node.children
       }yield(postOrder(child))
     list.foreach(println)
-    val rls = list.map{ l => l.reverse}
-    (node.value :: rls.flatten)
-
+    //val rls = list.map{ l => l.reverse}
+    val flattened = list.flatten :+ node.value
+    println(flattened)
+    flattened
 
   }
 }

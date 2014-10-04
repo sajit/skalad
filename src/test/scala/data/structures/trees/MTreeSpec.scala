@@ -101,5 +101,6 @@ class MTreeSpec extends FlatSpec with Matchers{
   it should "post order" in {
     val tree = MTree('a', List(MTree('f', List(MTree('g'))), MTree('c'), MTree('b', List(MTree('d'), MTree('e')))))
     MTreeUtils.postOrder(tree) should be (List('g','f','c','d','e','b','a'))
+
   }
 }

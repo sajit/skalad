@@ -86,22 +86,30 @@ object MTreeUtils {
       val list = for{
         child <- node.children
       }yield(postOrder(child))
-    list.foreach(println)
     //val rls = list.map{ l => l.reverse}
     val flattened = list.flatten :+ node.value
-    println(flattened)
     flattened
 
   }
   def lispy[T](node:MTree[T]):String = {
-    def buildLispLikeTree(cur:MTree[T]):String = {
-      val newStr:String = cur.value
+    def buildReverseLispLikeTree(cur:MTree[T]):String = {
+
+
       val childLists:List[String] = for{
         child <- cur.children
-      }yield(buildLispLikeTree(child))
-      childLists.foldRight(newStr)((childList,currentStr) => currentStr + childList)
-      
+      }yield(buildReverseLispLikeTree(child))
+      val concatStr = childLists.foldLeft(cur.value.toString)((childList,currentStr) => {
+        //println("Current iteration " + childList)
+        currentStr + childList})
+      val result = if(!cur.children.isEmpty){
+        ")"+concatStr+"(" //why this looks weird is because finally we reverse this string and hence paranthesis need to be in other order
+      } else{
+        concatStr
+      }
+      result
     }
-    buildLispLikeTree(node,"")
+    val fullTree = buildReverseLispLikeTree(node).reverse
+    println(fullTree)
+    fullTree
   }
 }

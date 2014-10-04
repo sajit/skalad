@@ -103,4 +103,15 @@ class MTreeSpec extends FlatSpec with Matchers{
     MTreeUtils.postOrder(tree) should be (List('g','f','c','d','e','b','a'))
 
   }
+
+  it should "create a lisp like notatoin for a Mtree" in {
+    val tree = MTree('a', List(MTree('f', List(MTree('g'))), MTree('c'), MTree('b', List(MTree('d'), MTree('e')))))
+
+    MTreeUtils.lispy(tree) should be ("(a(fg)c(bde))")
+
+    MTreeUtils.lispy(MTree('a')) should be ("a")
+    MTreeUtils.lispy(MTree('a',List(MTree('f')))) should be ("(af)")
+    MTreeUtils.lispy(MTree('a', List(MTree('f', List(MTree('g')))))) should be ("(a(fg))")
+    MTreeUtils.lispy(MTree('b', List(MTree('d'), MTree('e')))) should be ("(bde)")
+  }
 }

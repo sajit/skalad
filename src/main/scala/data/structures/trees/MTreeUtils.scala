@@ -92,4 +92,15 @@ object MTreeUtils {
 
 
   }
+  def lispy[T](node:MTree[T]):String = {
+    def buildLispLikeTree(cur:MTree[T]):String = {
+      val newStr:String = cur.value
+      val childLists:List[String] = for{
+        child <- cur.children
+      }yield(buildLispLikeTree(child))
+      childLists.foldRight(newStr)((childList,currentStr) => currentStr + childList)
+      
+    }
+    buildLispLikeTree(node,"")
+  }
 }

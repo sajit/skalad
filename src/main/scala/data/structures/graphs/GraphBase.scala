@@ -21,8 +21,8 @@ abstract class GraphBase[T, U] {
   def edgeTarget(e: Edge, n: Node): Option[Node]
 
   override def equals(o: Any) = o match {
-    case g: GraphBase[T,U] => (nodes.keys.toSet -- g.nodes.keys.toSet == Nil &&
-      edges.map(_.toTuple).toSet -- g.edges.map(_.toTuple).toSet == Nil)
+    case g: GraphBase[T,U] => (nodes.keys.toSet -- g.nodes.keys.toSet == Set.empty &&
+      edges.map(_.toTuple).toSet -- g.edges.map(_.toTuple).toSet == Set.empty)
     case _ => false
   }
 
@@ -30,6 +30,12 @@ abstract class GraphBase[T, U] {
     val n = new Node(value)
     nodes = Map(value -> n) ++ nodes
     n
+  }
+
+  def print() = {
+    println(nodes.keys.toSet)
+    println("Eddgess")
+    println(edges.map(_.toTuple).toSet)
   }
 }
 

@@ -109,7 +109,7 @@ object MTreeUtils {
       result
     }
     val fullTree = buildReverseLispLikeTree(node).reverse
-    println(fullTree)
+    //println(fullTree)
     fullTree
   }
 }

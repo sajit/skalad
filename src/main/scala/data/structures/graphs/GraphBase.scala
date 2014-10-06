@@ -33,9 +33,8 @@ abstract class GraphBase[T, U] {
   }
 
   def print() = {
-    println(nodes.keys.toSet)
-    println("Eddgess")
-    println(edges.map(_.toTuple).toSet)
+    println("Nodes " + nodes.keys.toSet)
+    println("Edges " + edges.map(_.toTuple).toSet)
   }
 }
 

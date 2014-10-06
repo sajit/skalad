@@ -25,4 +25,32 @@ class GraphBaseSpec extends FlatSpec with Matchers {
     g1.equals(g1) should be (true)
 
   }
+
+  it should "not be equal if nodes are diff" in {
+    val g1 = new Graph[Char,Int]()
+    g1.addNode('a')
+    val g2 = new Graph[Char,Int]()
+    g2.addNode(('b'))
+    g1.equals(g2) should be (false)
+    g2.addNode('a')
+    g2.equals(g1) should be (false)
+    g1.addNode('b')
+    g1.equals(g2) should be (true)
+  }
+
+  it should "test equality based on edges" in {
+    val g1 = new Graph[Char, Int]()
+    g1.addNode('a')
+    val g2 = new Graph[Char, Int]()
+    g2.addNode(('b'))
+    g2.addNode('a')
+    g1.addNode('b')
+    g1.equals(g2) should be (true)
+    g1.addEdge('a','b',5)
+    g1.equals(g2) should be (false)
+    g2.addEdge('b','a',5)
+    g1.equals(g2) should be (false)
+  }
+
+  //it should "check equality for edges"
 }

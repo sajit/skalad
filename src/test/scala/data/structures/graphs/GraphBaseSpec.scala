@@ -70,7 +70,7 @@ class GraphBaseSpec extends FlatSpec with Matchers {
     g1.print()
     g1.edges.length should be (1)
     g2.edges.length should be (2)
-    val edge1:Graph.edge = Gra
+    
    // val node1 = Node('b')
 
 

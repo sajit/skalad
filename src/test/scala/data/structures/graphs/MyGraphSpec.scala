@@ -18,5 +18,6 @@ class MyGraphSpec extends FlatSpec with Matchers{
     val n2 = GraphNode('a')
     n2.addEdge(GraphEdge('a','b',4))
     n1.equals(n2) should be (true)
+    n1.equals(GraphNode('b')) should be (false)
   }
 }

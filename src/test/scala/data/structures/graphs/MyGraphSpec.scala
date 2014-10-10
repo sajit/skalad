@@ -35,4 +35,18 @@ class MyGraphSpec extends FlatSpec with Matchers{
     graph.edgeTarget(GraphEdge(n1.value,n2.value,5),n1) should be (Some(n1))
 
   }
+
+  it should "create a big graph" in {
+    val graph = new UndirectedGraph[Char]()
+    val nodeList = List('b', 'c', 'd', 'f', 'g', 'h', 'k')
+    graph.addNodes(nodeList)
+    graph.nodeCount() should be (nodeList.size)
+//    val edgeList = List(('b', 'c',5), ('b', 'f',2), ('c', 'f',6), ('f', 'k',2), ('g', 'h',3))
+//    edgeList.foreach{
+//      anEdge => graph.addEdge(anEdge._1,anEdge._2,anEdge._3)
+//    }
+
+    val (nodes,edges) = graph.toTerm()
+    nodes.size should be (nodeList.size)
+  }
 }

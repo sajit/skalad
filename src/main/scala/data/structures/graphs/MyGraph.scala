@@ -20,6 +20,8 @@ class UndirectedGraph[T] extends MyGraph[T]{
     addEdgeToNode(GraphNode(n2), GraphEdge(n2, n1, weight))
   }
 
+
+
 }
 
 class DirectedGraph[T] extends MyGraph[T] {
@@ -36,7 +38,11 @@ class DirectedGraph[T] extends MyGraph[T] {
 abstract class MyGraph[T] {
   var nodeMap:Map[GraphNode[T],List[GraphEdge[T]]] = Map()
   def addNode(node:GraphNode[T]) = nodeMap += node -> List()
-  def addNodes(nodes:Set[GraphNode[T]]) = nodeMap ++ nodes.map{aNode => (aNode,List())}.toSet
+  def addNodes(nodes:List[T]) = {
+    val graphNodes:List[GraphNode[T]] = nodes.map{aNode => GraphNode(aNode)}
+    val tuples = graphNodes.map{aNode => aNode -> List()}
+    nodeMap ++= tuples
+  }
 
   def addEdge(n1:T,n2:T,weight:Int)
 
@@ -64,5 +70,12 @@ abstract class MyGraph[T] {
       case _ => None
     }
   }
+
+  def toTerm():(List[T],List[GraphEdge[T]]) = {
+    val allEdges:List[GraphEdge[T]] = nodeMap.foldRight(List[GraphEdge[T]]())((el,x) => x ++ el._2)
+    (nodeMap.keySet.toList.map{x => x.value},allEdges)
+  }
+
+  def nodeCount():Int = nodeMap.keySet.size
 
 }

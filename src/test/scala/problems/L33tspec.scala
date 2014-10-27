@@ -37,4 +37,11 @@ class L33tspec extends FlatSpec with Matchers{
     L33t.isValidPalindrome("mlayalam") should be (false)
     L33t.isValidPalindrome("malayalama") should be (false)
   }
+
+  it should "find elements in a sorted matrix " in {
+    val matrix = Array(Array(1,2,3,10),Array(4,5,9,13),Array(6,7,10,14))
+    val sortedMatrix = new SortedMatrix(matrix)
+    sortedMatrix.find(6) should be (true)
+    sortedMatrix find(100) should be (false)
+  }
 }

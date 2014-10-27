@@ -31,4 +31,10 @@ class L33tspec extends FlatSpec with Matchers{
     val result = L33t.mergeIntervals(in)
     result should be (List((2,5)))
   }
+
+  it should "find pallindrom validity" in {
+    L33t.isValidPalindrome("malayalam") should be (true)
+    L33t.isValidPalindrome("mlayalam") should be (false)
+    L33t.isValidPalindrome("malayalama") should be (false)
+  }
 }

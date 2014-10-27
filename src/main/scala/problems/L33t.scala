@@ -39,4 +39,12 @@ object L33t {
 
   def removeOriginalAndDupes(x:List[Int]) = ???
 
+  def isValidPalindrome(str:String):Boolean = {
+    str.length match {
+      case 0 =>  true
+      case 1 =>  true
+      case _ => str.charAt(0) == str.charAt(str.length-1) && isValidPalindrome(str.substring(1,str.length-1))
+    }
+  }
+
 }

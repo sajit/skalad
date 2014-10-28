@@ -47,6 +47,20 @@ object L33t {
     }
   }
 
+  def countSequences(target:String,search:String):Int = {
+    if(search.isEmpty){
+      1
+    }
+    else{
+      val head = search.charAt(0)
+      val headIdx = target.indexOf(head)
+      if(headIdx < 0){
+        0
+      }else{
+        countSequences(target.substring(headIdx+1),search) + countSequences(target.substring(headIdx+1),search.substring(1))
+      }
+    }
+  }
 
 
 }
@@ -82,14 +96,5 @@ class SortedMatrix(matrix:Array[Array[Int]]){
     doFind(target,0,0,matrix.length-1,matrix(0).length-1)
   }
 
-  /**
-   * else if(value < mid){
-            return doFind(value,matrix,top,left,xMid,yMid) || doFind(value,matrix,top,yMid+1,xMid,right) ||
-                    doFind(value,matrix,xMid+1,left,bottom,yMid);
-        }
-        else{
-            return doFind(value,matrix,xMid+1,yMid+1,bottom,right) || doFind(value,matrix,top,yMid+1,xMid,right) ||
-                    doFind(value,matrix,xMid+1,left,bottom,yMid);
-        }
-   */
+
 }

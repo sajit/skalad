@@ -44,4 +44,11 @@ class L33tspec extends FlatSpec with Matchers{
     sortedMatrix.find(6) should be (true)
     sortedMatrix find(100) should be (false)
   }
+
+  it should "count subseq occurences" in {
+    val target = "rabbbitt"
+    val search = "abbit"
+    L33t.countSequences(target,search) should be (6)
+    L33t.countSequences("rabbitaabbi",search) should be (1)
+  }
 }

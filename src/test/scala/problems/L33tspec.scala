@@ -51,4 +51,9 @@ class L33tspec extends FlatSpec with Matchers{
     L33t.countSequences(target,search) should be (6)
     L33t.countSequences("rabbitaabbi",search) should be (1)
   }
+
+  it should "find max continuous sub array" in {
+    val in:List[Int] =  List(-2,1,-3,4,-1,2,1,-5,4)
+    L33t.maxContSeqSum(in) should be (6)
+  }
 }

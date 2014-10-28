@@ -62,6 +62,25 @@ object L33t {
     }
   }
 
+  def maxContSeqSum(in:List[Int]):Int = {
+    var css = 0
+    var mss = 0
+    in.foreach{
+      el => {
+        if (el + css < 0) {
+          css = 0
+        }
+        else {
+          css += el
+          if (mss < css) {
+            mss = css
+          }
+        }
+      }
+    }
+    mss
+  }
+
 
 }
 class SortedMatrix(matrix:Array[Array[Int]]){

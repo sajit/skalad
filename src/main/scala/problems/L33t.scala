@@ -47,4 +47,73 @@ object L33t {
     }
   }
 
+  def countSequences(target:String,search:String):Int = {
+    if(search.isEmpty){
+      1
+    }
+    else{
+      val head = search.charAt(0)
+      val headIdx = target.indexOf(head)
+      if(headIdx < 0){
+        0
+      }else{
+        countSequences(target.substring(headIdx+1),search) + countSequences(target.substring(headIdx+1),search.substring(1))
+      }
+    }
+  }
+
+  def maxContSeqSum(in:List[Int]):Int = {
+    var css = 0
+    var mss = 0
+    in.foreach{
+      el => {
+        if (el + css < 0) {
+          css = 0
+        }
+        else {
+          css += el
+          if (mss < css) {
+            mss = css
+          }
+        }
+      }
+    }
+    mss
+  }
+
+
+}
+class SortedMatrix(matrix:Array[Array[Int]]){
+
+  def doFind(searchVar: Int, x0: Int, y0: Int, x1: Int, y1: Int): Boolean = {
+    //println("X0 => "+ x0 + "Y0 => " + y0 + " x1 =>" + x1 + " y1 => " + y1)
+
+    if(x0 <= x1 && y0 <= y1){
+      if(x0 == x1 && y0 == y1){
+        searchVar == matrix(x0)(y1)
+      }
+      else{
+
+        val (midX,midY):(Int,Int) = ((x0 + x1)/2,(y0+y1)/2)
+        if(matrix(midX)(midY)==searchVar){
+          true
+        }
+        else if(matrix(midX)(midY) < searchVar){
+          doFind(searchVar,x0,y0,midX,midY) || doFind(searchVar,x0,midY+1,midX,y1) || doFind(searchVar,midX+1,y0,x1,midY)
+        }
+        else{
+          doFind(searchVar,midX+1,midY+1,x1,y1) || doFind(searchVar,x0,midY+1,midX,y1) || doFind(searchVar,midX+1,y0,x1,midY)
+        }
+      }
+
+    }else{
+      false
+    }
+  }
+
+  def find(target:Int):Boolean = {
+    doFind(target,0,0,matrix.length-1,matrix(0).length-1)
+  }
+
+
 }

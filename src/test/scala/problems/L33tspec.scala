@@ -37,4 +37,23 @@ class L33tspec extends FlatSpec with Matchers{
     L33t.isValidPalindrome("mlayalam") should be (false)
     L33t.isValidPalindrome("malayalama") should be (false)
   }
+
+  it should "find elements in a sorted matrix " in {
+    val matrix = Array(Array(1,2,3,10),Array(4,5,9,13),Array(6,7,10,14))
+    val sortedMatrix = new SortedMatrix(matrix)
+    sortedMatrix.find(6) should be (true)
+    sortedMatrix find(100) should be (false)
+  }
+
+  it should "count subseq occurences" in {
+    val target = "rabbbitt"
+    val search = "abbit"
+    L33t.countSequences(target,search) should be (6)
+    L33t.countSequences("rabbitaabbi",search) should be (1)
+  }
+
+  it should "find max continuous sub array" in {
+    val in:List[Int] =  List(-2,1,-3,4,-1,2,1,-5,4)
+    L33t.maxContSeqSum(in) should be (6)
+  }
 }

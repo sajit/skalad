@@ -78,4 +78,5 @@ abstract class MyGraph[T] {
 
   def nodeCount():Int = nodeMap.keySet.size
 
+
 }

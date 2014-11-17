@@ -1,6 +1,7 @@
 package oops
 
 import data.structures.trees.TreeNode
+import oopsie._
 import org.scalatest.{Matchers, FlatSpec}
 
 import scala.collection.mutable.Stack
@@ -50,5 +51,13 @@ class CaseTests extends FlatSpec with Matchers {
     val l1 = List(Edge(Node('a'),Node('b'),4))
     val l2 = List(Edge(Node('a'),Node('b'),4))
     l1.equals(l2) should be (true)
+  }
+
+  it should "init case class with params" in {
+    val foo = Foo(1,"3")
+    val bar = Bar("bard")
+    val bar1 = Bar()
+    bar.name should be ("bard")
+    bar1.name should be ("hello")
   }
 }

@@ -79,3 +79,6 @@ abstract class MyGraph[T] {
   def nodeCount():Int = nodeMap.keySet.size
 
 }
+class TraversalGraphNode[T](value:T,visited:Boolean) extends GraphNode[T](value:T){
+
+}

@@ -51,7 +51,7 @@ class MyGraphSpec extends FlatSpec with Matchers{
   }
 
   it should "init a Traversal Node" in {
-    val tNode = new TraversalGraphNode[Char]('a',false)
+    val tNode = new GraphNode[Char]('a',false)
     tNode.visited should be (false)
     tNode.visited = true
     tNode.visited should be (true)

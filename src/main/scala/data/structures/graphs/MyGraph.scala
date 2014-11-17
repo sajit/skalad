@@ -4,7 +4,7 @@ package data.structures.graphs
  * Created by skunnumkal on 10/8/14.
  */
 
-case class GraphNode[T](value: T)
+case class GraphNode[T](value: T,var visited:Boolean = false)
 //{
 //  var adj: List[GraphEdge[T]] = Nil
 //  def addEdge(edge:GraphEdge[T]) = edge :: adj
@@ -79,4 +79,3 @@ abstract class MyGraph[T] {
   def nodeCount():Int = nodeMap.keySet.size
 
 }
-class TraversalGraphNode[T](value:T,var visited:Boolean) extends GraphNode[T](value:T)

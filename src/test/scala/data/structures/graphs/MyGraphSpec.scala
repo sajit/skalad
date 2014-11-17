@@ -49,4 +49,11 @@ class MyGraphSpec extends FlatSpec with Matchers{
     val (nodes,edges) = graph.toTerm()
     nodes.size should be (nodeList.size)
   }
+
+  it should "init a Traversal Node" in {
+    val tNode = new TraversalGraphNode[Char]('a',false)
+    tNode.visited should be (false)
+    tNode.visited = true
+    tNode.visited should be (true)
+  }
 }

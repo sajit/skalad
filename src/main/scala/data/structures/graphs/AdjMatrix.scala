@@ -9,8 +9,6 @@ class AdjMatrix(val matrix:Array[Array[Int]]) {
 
    private var visited:Array[Boolean] = Array.fill[Boolean](matrix.length)(false)
 
-   private val hdmd = new AdjacencyMatrix()
-
    private def doDfs(current:Int):Unit = {
      println("Current Node Idx" + current)
      visited(current) = true
@@ -21,10 +19,18 @@ class AdjMatrix(val matrix:Array[Array[Int]]) {
      }
    }
 
-  def dfs(start:Int):Unit = {
-    doDfs(start)
+  def getVisitedCount():Int = {
+    visited.foldRight(0)((el,sum) => if(el){ sum + 1} else {sum})
+
+  }
+
+  def resetVisited() = {
     //reset visited array
     visited = Array.fill[Boolean](matrix.length)(false)
+  }
+  def dfs(start:Int):Unit = {
+    doDfs(start)
+
   }
 
 

@@ -34,6 +34,11 @@ class AdjMatrixSpec extends FlatSpec with Matchers{
     matrix2.resetVisited()
   }
 
+  it should "identify a path" in {
+    matrix2.hasPath(0,2) should be (true)
+    matrix2.hasPath(0,1) should be (false)
+  }
+
 
 
 }

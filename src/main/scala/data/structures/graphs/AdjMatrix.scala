@@ -33,6 +33,24 @@ class AdjMatrix(val matrix:Array[Array[Int]]) {
 
   }
 
+  def hasPath(current:Int,target:Int):Boolean = {
+    visited(current) = true
+    if(current==target){
+      true
+    }
+    else{
+      var result = false
+      for ( i <- 0 to (matrix(current).length - 1) ) {
+        if(matrix(current)(i) != -1 && !visited(i)){
+          result = hasPath(i,target)
+        }
+      }
+      result
+    }
+
+
+  }
+
 
 
 }

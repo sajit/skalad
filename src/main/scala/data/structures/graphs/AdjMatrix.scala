@@ -51,6 +51,25 @@ class AdjMatrix(val matrix:Array[Array[Int]]) {
 
   }
 
+  def countCycles(start:Int):List[Set[Int]] = {
+    var cycles = List[Set[Int]]()
+    def doCountCycles(current:Int,start:Int,currentCycle:Set[Int]):Unit= {
+      visited(current) = true
+      for(i <- 0 to (matrix(current).length -1)) {
+        if(matrix(current)(i) != -1 && i==start && currentCycle.size>2){
+          cycles = currentCycle :: cycles
+        }
+        if(matrix(current)(i) != -1 && !visited(i)){
+          doCountCycles(i,start, currentCycle + i)
+        }
+      }
+      visited(current) = false
+
+    }
+    doCountCycles(start,start,Set(start))
+    cycles.distinct
+  }
+
 
 
 }

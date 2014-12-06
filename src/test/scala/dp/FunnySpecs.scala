@@ -16,5 +16,6 @@ class FunnySpecs extends FlatSpec with Matchers{
     val result = DPContainer.longestContinuousSum(inList)
     result should be (12)
     DPContainer.longestContinuousSum(List(-1,-4)) should be (0)
+    DPContainer.longestContinuousSum(List(-7,1,2,-2,5,6)) should be (12)
   }
 }

@@ -11,4 +11,10 @@ class FunnySpecs extends FlatSpec with Matchers{
     asd.lndsLen() should be (3)
   }
 
+  it should "get max cont sum " in {
+    val inList = List(-1,5,7,-14,3,5,1)
+    val result = DPContainer.longestContinuousSum(inList)
+    result should be (12)
+    DPContainer.longestContinuousSum(List(-1,-4)) should be (0)
+  }
 }

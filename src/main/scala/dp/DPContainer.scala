@@ -35,6 +35,23 @@ object DPContainer {
 
   }
 
+  def longestContinuousSum(inList:List[Int]):Int = {
+    var currentSeqSum = 0
+    var maxSeqSum = 0
+    for(i <- 0 to inList.length-1){
+      currentSeqSum += inList(i)
+      if(currentSeqSum<0){
+        currentSeqSum = 0
+      }
+      if(currentSeqSum > maxSeqSum){
+        maxSeqSum = currentSeqSum
+      }
+
+    }
+    maxSeqSum
+
+  }
+
 
   def main(args:Array[String]) = {
     val str = "malayalam"

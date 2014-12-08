@@ -44,9 +44,23 @@ class AdjMatrixSpec extends FlatSpec with Matchers{
   it should "identify cycles" in {
     val matrix = new AdjMatrix(graph1)
     val result = matrix.countCycles(0)
-    println("Result " + result)
+    //println("Result " + result)
     result.length should be (1)
     matrix.countCycles(3) should be (List[String]())
+  }
+
+  it should "identify ze cycles" in {
+    val bigGraph = Array(
+      Array(-1,1,-1,1,1,-1),
+      Array(1,-1,1,-1,-1,-1),
+      Array(-1,1,-1,1,-1,1),
+      Array(1,-1,1,-1,1,1),
+      Array(1,-1,-1,1,-1,-1),
+      Array(-1,-1,1,1,-1,-1))
+    val matrix = new AdjMatrix(bigGraph)
+    val result = matrix.countCycles(0)
+    //println("Result " + result)
+    result.length should be (5)
   }
 
 

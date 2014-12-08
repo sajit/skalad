@@ -81,6 +81,15 @@ object L33t {
     mss
   }
 
+  def isRotation(a:String,b:String):Boolean = {
+    for(i <- 0 until a.length){
+      if(!b.contains(a.substring(0,i))){
+        return (a.substring(i-1)+a.substring(0,i-1)).equals(b)
+      }
+    }
+    return true;
+  }
+
 
 }
 class SortedMatrix(matrix:Array[Array[Int]]){

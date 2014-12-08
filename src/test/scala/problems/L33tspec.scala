@@ -56,4 +56,10 @@ class L33tspec extends FlatSpec with Matchers{
     val in:List[Int] =  List(-2,1,-3,4,-1,2,1,-5,4)
     L33t.maxContSeqSum(in) should be (6)
   }
+
+  it should "identify rotations1" in {
+    L33t.isRotation("terbottlewa","waterbottle") should be (true)
+    L33t.isRotation("waterbottle","waterbottle") should be (true)
+    L33t.isRotation("battlewoter","rbottlewate") should be (false)
+  }
 }

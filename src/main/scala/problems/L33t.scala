@@ -81,6 +81,7 @@ object L33t {
     mss
   }
 
+
   def findMinDiff(a:List[Int],b:List[Int],currDiff:Int):Int  = {
     if(a.isEmpty || b.isEmpty ){
       currDiff
@@ -99,6 +100,17 @@ object L33t {
         diff
       }
     }
+  }
+
+
+
+  def isRotation(a:String,b:String):Boolean = {
+    for(i <- 0 until a.length){
+      if(!b.contains(a.substring(0,i))){
+        return (a.substring(i-1)+a.substring(0,i-1)).equals(b)
+      }
+    }
+    return true;
   }
 
 

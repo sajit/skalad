@@ -57,14 +57,22 @@ class L33tspec extends FlatSpec with Matchers{
     L33t.maxContSeqSum(in) should be (6)
   }
 
+
   it should "find min diff" in {
     val a = List(100,101,105)
     val b = List(20,23,108,200)
     L33t.findMinDiff(a,b,Integer.MAX_VALUE) should be (3)
   }
   it should "find min diff for not found words" in {
-    val a = List(100,101,105)
+    val a = List(100, 101, 105)
     val b = List()
-    L33t.findMinDiff(a,b,Integer.MAX_VALUE) should be (Integer.MAX_VALUE)
+    L33t.findMinDiff(a, b, Integer.MAX_VALUE) should be(Integer.MAX_VALUE)
+  }
+
+  it should "identify rotations1" in {
+    L33t.isRotation("terbottlewa","waterbottle") should be (true)
+    L33t.isRotation("waterbottle","waterbottle") should be (true)
+    L33t.isRotation("battlewoter","rbottlewate") should be (false)
+
   }
 }

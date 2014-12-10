@@ -23,7 +23,8 @@ object PandCUtil {
     val result= new mutable.MutableList[String]()
     for(i <- 0 to str.length){
       val prefix = str.substring(0,i)
-      val suffix = str.substring(i)
+      val suffix = str.substring(i+1);
+
       //println(prefix + " : " + suffix)
       result += prefix + String.valueOf(ch) + suffix
     }

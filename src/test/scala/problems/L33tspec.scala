@@ -56,4 +56,15 @@ class L33tspec extends FlatSpec with Matchers{
     val in:List[Int] =  List(-2,1,-3,4,-1,2,1,-5,4)
     L33t.maxContSeqSum(in) should be (6)
   }
+
+  it should "find min diff" in {
+    val a = List(100,101,105)
+    val b = List(20,23,108,200)
+    L33t.findMinDiff(a,b,Integer.MAX_VALUE) should be (3)
+  }
+  it should "find min diff for not found words" in {
+    val a = List(100,101,105)
+    val b = List()
+    L33t.findMinDiff(a,b,Integer.MAX_VALUE) should be (Integer.MAX_VALUE)
+  }
 }

@@ -92,18 +92,17 @@ object DPContainer {
 //This is not working
 //  def kp2(weight:Int):Int = {
 //    //only 1 item of each type
-//    def recursiveKp1Item(idx:Int,remainingWeight:Int):Int = {
-//
-//      if(idx < 0 ){ return -1000 }
-//      if(remainingWeight < 0 ){
-//        return -1000
-//      }
-//      if(remainingWeight == 0 ){ return 0}
-//      val withoutIdx = recursiveKp1Item(idx-1,remainingWeight)
-//      val withIdx = recursiveKp1Item(idx-1,remainingWeight-weights(idx))+values(idx)
-//      println("Idx="+idx+",Weight="+remainingWeight, "With="+withIdx," Without="+withoutIdx)
-//      Math.max(withoutIdx,withIdx)
-//    }
+    def recursiveKp1Item(idx:Int,remainingWeight:Int):Int = {
+
+      if(idx < 0 ){ return -1000 }
+      if(remainingWeight < 0 ){
+        return -1000
+      }
+      if(remainingWeight == 0 ){ return 0}
+      //println("Idx="+idx+",Weight="+remainingWeight, "With="+withIdx," Without=" + recursiveKp1Item(idx - 1, remainingWeight))
+      Math.max(recursiveKp1Item(idx - 1, remainingWeight),
+               recursiveKp1Item(idx - 1, remainingWeight - weights(idx)) + values(idx))
+    }
 //    recursiveKp1Item(values.length-1,weight)
 //  }
 

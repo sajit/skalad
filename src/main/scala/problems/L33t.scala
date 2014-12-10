@@ -81,6 +81,27 @@ object L33t {
     mss
   }
 
+  def findMinDiff(a:List[Int],b:List[Int],currDiff:Int):Int  = {
+    if(a.isEmpty || b.isEmpty ){
+      currDiff
+    }
+    else{
+      val aHead = a.head
+      val bHead = b.head
+      val diff = Math.min(Math.abs(aHead-bHead),currDiff)
+      if(aHead < bHead){
+        findMinDiff(a.tail,b,diff)
+      }
+      else if(aHead > bHead){
+        findMinDiff(a,b.tail,diff)
+      }
+      else{
+        diff
+      }
+    }
+  }
+
+
 
 }
 class SortedMatrix(matrix:Array[Array[Int]]){
@@ -114,6 +135,7 @@ class SortedMatrix(matrix:Array[Array[Int]]){
   def find(target:Int):Boolean = {
     doFind(target,0,0,matrix.length-1,matrix(0).length-1)
   }
+
 
 
 

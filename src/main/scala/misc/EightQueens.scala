@@ -2,17 +2,18 @@ package misc
 class EightQueens(val size:Int){
 
   val board = Array.ofDim[Boolean](size,size)
-  def printBoard() = {
-    val cArr = board.map{ y  => y.map{x => {if(!x) {" "}else{"Q "}}}}
-    cArr.map{row => {
+  //val solutions  = List[Array[Array[String]]]
+  def printBoard(snapshot:Array[Array[Boolean]]) = {
+    val cArr = snapshot.map{ y  => y.map{x => {if(!x) {" "}else{"Q"}}}}
+    cArr.foreach{row => {
       //print row
-      row.map{el => System.out.print(el)}
+      row.foreach{el => System.out.print(el+ "|")}
       System.out.println()
     }}
   }
 
-  def placeQueen(row:Int,col:Int) = {
-    board(row)(col) = true
+  def modifyQueenPosition(row:Int,col:Int,state:Boolean) = {
+    board(row)(col) = state
   }
 
   def checkCol(row:Int,col:Int):Boolean = {
@@ -35,7 +36,7 @@ class EightQueens(val size:Int){
   }
 
   def checkBwdDiagonal(row:Int,col:Int):Boolean = {
-    println("Row " + row + "Col " + col)
+    //println("Row " + row + "Col " + col)
     if(row<0 || col>=size){
       true
     }
@@ -45,29 +46,35 @@ class EightQueens(val size:Int){
 
   }
 
-//  def getPossibleCols(currentRow:Int):List[Int] = {
-//    def doGetPossibleCols(currentCol:Int,soFar:List[Int]):List[Int] = {
-//      if(currentCol >= size){
-//        soFar
-//      }
-//      else{
-//        if(checkCol(currentCol) && checkFwdDiagonal(currentCol) && checkBwdDiagonal(currentCol)){
-//          doGetPossibleCols(currentCol+1,currentCol :: soFar)
-//        }
-//        else{
-//          doGetPossibleCols(currentCol+1,soFar)
-//        }
-//      }
-//    }
-//    doGetPossibleCols(0,List[Int]())
-//  }
-//  def placeQueen(row:Int):Unit = {
-//    if(row >= size){
-//      printBoard()
-//      return
-//    }
-//    val possiblities:List[Int] = getPossibileCols(row)
-//
-//  }
+  def getPossibleCols(currentRow:Int):List[Int] = {
+    def doGetPossibleCols(currentCol:Int,soFar:List[Int]):List[Int] = {
+      if(currentCol >= size){
+        soFar
+      }
+      else{
+        if(checkCol(currentRow,currentCol) && checkFwdDiagonal(currentRow,currentCol) && checkBwdDiagonal(currentRow,currentCol)){
+          doGetPossibleCols(currentCol+1,currentCol :: soFar)
+        }
+        else{
+          doGetPossibleCols(currentCol+1,soFar)
+        }
+      }
+    }
+    doGetPossibleCols(0,List[Int]())
+  }
+  def placeQueenOnBoard(row:Int):Unit = {
+    if(row >= size){
+      printBoard(board)
+      System.out.println("---------------------------")
+      return
+    }
+    val possiblities:List[Int] = getPossibleCols(row)
+    possiblities.foreach{col => {
+      modifyQueenPosition(row,col,true)
+      placeQueenOnBoard(row+1)
+      modifyQueenPosition(row,col,false)
+    }}
+
+  }
 
 }

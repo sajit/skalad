@@ -8,7 +8,8 @@ import org.scalactic.Snapshot
 class KnightsTour (val size:Int) {
 
   val board = Array.ofDim[Boolean](size,size)
-  val tourStep = Array.ofDim[Int](size,size)
+  val tourStep = Array.fill[Int](size,size)(-1)
+
 
   def isComplete(snapshot:Array[Array[Boolean]]):Boolean = {
     snapshot.flatten.filter{ el => !el}.isEmpty
@@ -61,20 +62,15 @@ class KnightsTour (val size:Int) {
     board(xPos)(yPos) = true
     tourStep(xPos)(yPos) = step
     if(isComplete(board)){
-      //println("Completed a tour")
       count +=1
       return
     }
-    else{
-      val nextPositions:List[(Int,Int)] = getValidNexts(xPos,yPos,board)
-      nextPositions.foreach{tuple => {
+    val nextPositions:List[(Int,Int)] = getValidNexts(xPos,yPos,board)
+    nextPositions.foreach{tuple => {
         knightsTour(tuple._1,tuple._2,step+1)
-        //board(tuple._1)(tuple._2) = false
-      }}
-
-    }
+    }}
    board(xPos)(yPos) = false
-
+   tourStep(xPos)(yPos) = -1
   }
 
   def doWholeBoardTour() = {

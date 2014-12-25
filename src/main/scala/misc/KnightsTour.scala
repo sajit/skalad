@@ -8,14 +8,15 @@ import org.scalactic.Snapshot
 class KnightsTour (val size:Int) {
 
   val board = Array.ofDim[Boolean](size,size)
-  val tourStep = Array.fill[Int](size,size)(-1)
+  val tourStep:Array[Array[Int]] = Array.fill[Int](size,size)(-1)
 
+  var validSolutions  = List[Array[Array[Int]]]()
 
   def isComplete(snapshot:Array[Array[Boolean]]):Boolean = {
     snapshot.flatten.filter{ el => !el}.isEmpty
   }
 
-  var count = 0
+
 
   //TODO refactor this
   def getValidNexts(xPos: Int, yPos: Int, snapshot: Array[Array[Boolean]]) : List[(Int,Int)] = {
@@ -58,11 +59,15 @@ class KnightsTour (val size:Int) {
 
   }
 
+
+
   def knightsTour(xPos:Int,yPos:Int,step:Int = 0):Unit = {
     board(xPos)(yPos) = true
     tourStep(xPos)(yPos) = step
     if(isComplete(board)){
-      count +=1
+      val cloneT:Array[Array[Int]] = tourStep.clone()
+      validSolutions ::= cloneT
+      printTourBoard()
       return
     }
     val nextPositions:List[(Int,Int)] = getValidNexts(xPos,yPos,board)
@@ -76,18 +81,22 @@ class KnightsTour (val size:Int) {
   def doWholeBoardTour() = {
     board.zipWithIndex.foreach{
       case(row,rowIdx) => row.zipWithIndex.foreach{case(col,colIdx) =>
-       knightsTour(rowIdx,colIdx,0)
+        //System.out.print("Doing a tour starting at row " + rowIdx + " And col " + colIdx)
+        knightsTour(rowIdx,colIdx,0)
       }
     }
   }
 
-  def getTotalCount() = count
+  def getTotalCount() = validSolutions.length
 
-  def printTourBoard = {
+  def printTourBoard() = {
     tourStep.foreach{ row => row.foreach{el => System.out.print(" " + el)}
      System.out.println()
     }
+    System.out.println("-----------------")
   }
+
+  def getValidSolns() = validSolutions
 
 
 }

@@ -64,8 +64,8 @@ class EightQueens(val size:Int){
   }
   def placeQueenOnBoard(row:Int):Unit = {
     if(row >= size){
-      printBoard(board)
-      System.out.println("---------------------------")
+      //printBoard(board)
+      //System.out.println("---------------------------")
       return
     }
     val possiblities:List[Int] = getPossibleCols(row)

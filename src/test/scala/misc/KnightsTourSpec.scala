@@ -7,13 +7,16 @@ import org.scalatest.{Matchers, FlatSpec}
  */
 class KnightsTourSpec extends FlatSpec with Matchers{
 
+
+
   it should "get some tours" in {
     val knightsTour = new KnightsTour(5)
     knightsTour.getTotalCount() should be (0)
-    knightsTour.doWholeBoardTour()
-    println("# of tours for size 5 " + knightsTour.getTotalCount())
-    knightsTour.getTotalCount() should be (1728)
-    //knightsTour.printTourBoard
+    knightsTour.knightsTour(0,0)
+    val validSolns = knightsTour.getValidSolns()
+    validSolns.isEmpty should be (false)
+    val aSoln = validSolns(0)
+
   }
 
   it should "not complete any tour on a small board" in {

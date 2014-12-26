@@ -8,13 +8,15 @@ import org.scalactic.Snapshot
 class KnightsTour (val size:Int) {
 
   val board = Array.ofDim[Boolean](size,size)
-  val tourStep = Array.ofDim[Int](size,size)
+  val tourStep:Array[Array[Int]] = Array.fill[Int](size,size)(-1)
+
+  var validSolutions  = List[Array[Array[Int]]]()
 
   def isComplete(snapshot:Array[Array[Boolean]]):Boolean = {
     snapshot.flatten.filter{ el => !el}.isEmpty
   }
 
-  var count = 0
+
 
   //TODO refactor this
   def getValidNexts(xPos: Int, yPos: Int, snapshot: Array[Array[Boolean]]) : List[(Int,Int)] = {
@@ -57,41 +59,44 @@ class KnightsTour (val size:Int) {
 
   }
 
+
+
   def knightsTour(xPos:Int,yPos:Int,step:Int = 0):Unit = {
     board(xPos)(yPos) = true
     tourStep(xPos)(yPos) = step
     if(isComplete(board)){
-      //println("Completed a tour")
-      count +=1
+      val cloneT:Array[Array[Int]] = tourStep.clone()
+      validSolutions ::= cloneT
+      printTourBoard()
       return
     }
-    else{
-      val nextPositions:List[(Int,Int)] = getValidNexts(xPos,yPos,board)
-      nextPositions.foreach{tuple => {
+    val nextPositions:List[(Int,Int)] = getValidNexts(xPos,yPos,board)
+    nextPositions.foreach{tuple => {
         knightsTour(tuple._1,tuple._2,step+1)
-        //board(tuple._1)(tuple._2) = false
-      }}
-
-    }
+    }}
    board(xPos)(yPos) = false
-
+   tourStep(xPos)(yPos) = -1
   }
 
   def doWholeBoardTour() = {
     board.zipWithIndex.foreach{
       case(row,rowIdx) => row.zipWithIndex.foreach{case(col,colIdx) =>
-       knightsTour(rowIdx,colIdx,0)
+        //System.out.print("Doing a tour starting at row " + rowIdx + " And col " + colIdx)
+        knightsTour(rowIdx,colIdx,0)
       }
     }
   }
 
-  def getTotalCount() = count
+  def getTotalCount() = validSolutions.length
 
-  def printTourBoard = {
+  def printTourBoard() = {
     tourStep.foreach{ row => row.foreach{el => System.out.print(" " + el)}
      System.out.println()
     }
+    System.out.println("-----------------")
   }
+
+  def getValidSolns() = validSolutions
 
 
 }

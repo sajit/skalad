@@ -110,4 +110,29 @@ object ExpressionChecker {
       }
     }
   }
+
+  def validParans(expr:String):Boolean = {
+
+    def doCheck(in:String,pattern:String):Boolean = {
+      if(in.isEmpty){
+        pattern.isEmpty
+      }
+      else{
+        val head = in.head
+        head match {
+          case '(' => doCheck(in.tail,pattern + head)
+          case ')' => {
+            if(pattern.isEmpty){
+              false
+            }
+            else{
+              doCheck(in.tail,pattern.dropRight(1))
+            }
+          }
+        }
+      }
+    }
+    doCheck(expr,"")
+  }
+
 }

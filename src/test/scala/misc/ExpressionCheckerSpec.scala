@@ -53,4 +53,13 @@ class ExpressionCheckerSpec extends FlatSpec with Matchers{
     ExpressionChecker.isValid2("1+/3") should be (false)
   }
 
+  it should "check for parans expr" in {
+    ExpressionChecker.validParans("()") should be (true)
+    ExpressionChecker.validParans(")(") should be (false)
+    ExpressionChecker.validParans("(())") should be (true)
+    ExpressionChecker.validParans("((())") should be (false)
+    ExpressionChecker.validParans("())") should be (false)
+    ExpressionChecker.validParans("())(") should be (false)
+  }
+
 }

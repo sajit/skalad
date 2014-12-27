@@ -1,5 +1,6 @@
 package misc
 
+import java.lang.Integer
 import java.util.Stack
 
 /**
@@ -14,6 +15,7 @@ object ExpressionChecker {
    * @param expr
    * @return
    */
+  //TODO refactor this
   def isValid(expr:String):Boolean = {
      val validSymbols = List[Char]('+','-','/','*')
      def doCheck(remain:String,prev:Char):Boolean = {
@@ -46,6 +48,55 @@ object ExpressionChecker {
 
        }
      }
+    if(expr.isEmpty){
+      false
+    }
+    else{
+      val first:Char = expr.charAt(0)
+      if(first.isDigit){
+        doCheck(expr.tail,first)
+      }
+      else{
+        false
+      }
+    }
+  }
+
+  def isValid2(expr:String):Boolean = {
+    val validSymbols = List[Char]('+','-','/','*')
+    def doCheck(remain:String,prev:Char):Boolean = {
+      remain.isEmpty match {
+        case true => true
+        case false => {
+          val head: Char = remain.charAt(0)
+          head.isDigit match {
+            case true => {
+              prev.isDigit match {
+                case true => false
+                case false => doCheck(remain.tail, head)
+              }
+            }
+            case false => {
+              /** head is a char **/
+              validSymbols.contains(head) match {
+                case false => false
+                case true => {
+                  prev.isDigit match {
+                    case false => false
+                    case true => doCheck(remain.tail, head)
+                  }
+                }
+              }
+
+
+
+            }
+
+          }
+        }
+      }
+
+    }
     if(expr.isEmpty){
       false
     }

@@ -90,10 +90,10 @@ class KnightsTour (val size:Int) {
   def getTotalCount() = validSolutions.length
 
   def printTourBoard() = {
-    tourStep.foreach{ row => row.foreach{el => System.out.print(" " + el)}
-     System.out.println()
-    }
-    System.out.println("-----------------")
+//    tourStep.foreach{ row => row.foreach{el => System.out.print(" " + el)}
+//     System.out.println()
+//    }
+//    System.out.println("-----------------")
   }
 
   def getValidSolns() = validSolutions

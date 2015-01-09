@@ -75,4 +75,12 @@ class L33tspec extends FlatSpec with Matchers{
     L33t.isRotation("battlewoter","rbottlewate") should be (false)
 
   }
+
+  it should "identify diffs of D" in {
+
+    val inp = List(0,1,5,10,14)
+
+    L33t.hasDiff(inp,4) should be (true)
+    L33t.hasDiff(inp,6) should be (false)
+  }
 }

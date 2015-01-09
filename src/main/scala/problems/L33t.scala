@@ -114,6 +114,28 @@ object L33t {
   }
 
 
+  def hasDiff(in:List[Int],diff:Int):Boolean = {
+
+    if(in.length<2){
+      return false
+    }
+    val midIdx = (in.length - 1) /2
+    val start = in(0)
+    val end = in(in.length - 1)
+    if(end-start < diff){
+      return false
+    }
+    else if(end-start == diff){
+      return true
+
+    }
+    else{
+     return hasDiff(in.dropRight(midIdx),diff) || hasDiff(in.drop(midIdx),diff)
+    }
+
+  }
+
+
 
 }
 class SortedMatrix(matrix:Array[Array[Int]]){

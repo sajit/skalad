@@ -35,12 +35,46 @@ object RecursionUtils {
   }
 
 
-  def maxVal(aList:List[Int]):Int = aList match {
-    case Nil => throw new RuntimeException("Empty list maxValue not defined")
-    case a::Nil => a
-    case a::tail => math.max(a,maxVal(tail))
+
+  def maxVal[T <: Number](aList:List[T]):T = {
+    val myMax = new MyMax[T]
+    aList match {
+      case Nil => throw new RuntimeException("Empty list maxValue not defined")
+      case a :: Nil => a
+      case a::tail =>  myMax.max(a, maxVal(tail))
+    }
   }
 
 
+
+
+}
+
+/**
+ * This is not the ideal claass but what I wanted to test is whether i could inject this into maxVal
+ * @tparam T
+ */
+class MyMax[T <:Number]{
+
+  def max[T](a:T,b:T):T = {
+    if (a.isInstanceOf[Integer]) {
+      val intA = a.asInstanceOf[Integer]
+      val intB = b.asInstanceOf[Integer]
+
+      if(intA > intB) {a} else {b}
+
+    }
+    else {
+      //assuming double
+      val doubA = a.asInstanceOf[Double]
+      val doubB = b.asInstanceOf[Double]
+      if (doubA < doubB) {
+        b
+      } else {
+        a
+      }
+    }
+
+  }
 
 }

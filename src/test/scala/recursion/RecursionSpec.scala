@@ -12,7 +12,7 @@ class RecursionSpec extends FlatSpec with Matchers{
   }
 
   it should "return max" in {
-    RecursionUtils.maxVal(List(4,1,-5,3)) should be (4)
+    RecursionUtils.maxVal(List[Integer](4,1,-5,3)) should be (4)
   }
 
 }

@@ -2,6 +2,7 @@ package recursion
 
 import java.lang.reflect.Array
 
+
 /**
  * Created by sajit on 12/5/14.
  */
@@ -31,6 +32,13 @@ object RecursionUtils {
 
 
 
+  }
+
+
+  def maxVal(aList:List[Int]):Int = aList match {
+    case Nil => throw new RuntimeException("Empty list maxValue not defined")
+    case a::Nil => a
+    case a::tail => math.max(a,maxVal(tail))
   }
 
 

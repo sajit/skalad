@@ -11,4 +11,8 @@ class RecursionSpec extends FlatSpec with Matchers{
     RecursionUtils.printParam(0,0,3,"")
   }
 
+  it should "return max" in {
+    RecursionUtils.maxVal(List(4,1,-5,3)) should be (4)
+  }
+
 }

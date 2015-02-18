@@ -11,11 +11,27 @@ class Board(cells:Array[Array[Int]]) {
 //         boardState
 //    }
 //    else{
-//      boardState.foreach{ row => row.foreach{element => {
-//        if(element==0){
-//          SudokuHelperUtils.checkRow()
-//        }
-//      }}}
+//      boardState.zipWithIndex.map{
+//        case(row,rowIdx) => row.zipWithIndex.map{
+//          case(element,colIdx) => {
+//
+//         val rowPossiblities = SudokuHelperUtils.getPossibleNums(row.toList)
+//          if(rowPossiblities.length==1){
+//            val clone = boardState.clone()
+//            clone(rowIdx)(colIdx) = rowPossiblities(0)
+//            return solve(clone)
+//          }
+//          else{
+//            return solve(boardState.clone())
+//          }
+//          //val transposed = boardState.transpose
+//          //val colPossiblities = SudokuHelperUtils.getPossibleNums(transposed(colIdx).toList)
+//          //val groupPossibles = SudokuHelperUtils.getGroupPossibleNums(boardState,rowIdx,colIdx)
+//
+//
+//      }
+//      }
+//      }
 //    }
 //  }
 

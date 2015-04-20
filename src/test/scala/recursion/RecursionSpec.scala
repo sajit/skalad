@@ -38,4 +38,10 @@ class RecursionSpec extends FlatSpec with Matchers{
     }
   }
 
+  it should "pack up stuff" in {
+    val inp = List(4,4,3,3,3,2,5,1,1)
+    val expected = List(List(4,4),List(3,3,3),List(2),List(5),List(1,1))
+    RecursionUtils.packUp(inp) should be (expected)
+  }
+
 }

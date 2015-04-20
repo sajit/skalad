@@ -72,6 +72,23 @@ object RecursionUtils {
   }
 
 
+  def packUp(al:List[Int]):List[List[Int]] = {
+      def doPackUp(prev:Int,rem:List[Int],score:Int,acc:List[List[Int]]):List[List[Int]] = {
+        rem match {
+          case  Nil => {
+            List.fill(score)(prev)::acc
+          }
+          case x:: xs => {
+            prev == x match {
+              case true => doPackUp(x,xs,score+1,acc)
+              case false => doPackUp(x,xs,1,List.fill(score)(prev) :: acc)
+            }
+          }
+        }
+      }
+    doPackUp(Int.box(-1),al,1,Nil).reverse.tail
+    
+  } 
 
 
 }

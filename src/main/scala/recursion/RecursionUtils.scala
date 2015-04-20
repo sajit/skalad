@@ -45,6 +45,17 @@ object RecursionUtils {
     }
   }
 
+  def myFlatten(al:List[Any]):List[Any] =  al match {
+
+    case(head::tail) => {
+      head match {
+        case xl:List[Any] => myFlatten(xl) ++ myFlatten(tail)
+        case _ => head :: myFlatten(tail)
+      }
+    }
+    case Nil => List()
+  }
+
 
 
 

@@ -56,6 +56,21 @@ object RecursionUtils {
     case Nil => List()
   }
 
+  def takeN(n:Int,aList:List[Int]):List[Int] = {
+    def doTakeN(n:Int,rem:List[Int],soFar:List[Int]):List[Int] = {
+      if(n<=0){
+        soFar
+      }
+      else{
+        rem match {
+          case Nil => throw new RuntimeException("Empty list cannot be taken")
+          case a::tail => doTakeN(n-1,tail,a::soFar)
+        }
+      }
+    }
+   doTakeN(n,aList,List())
+  }
+
 
 
 

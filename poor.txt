@@ -1,3 +1,0 @@
-iThis is to show that you must not lose sight of your targets.
-Things to do.
-iFinish up scala 99 problems

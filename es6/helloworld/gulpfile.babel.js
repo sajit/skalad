@@ -63,3 +63,8 @@ gulp.task('test', ['eslint'], (done) => {
     autoWatch: args.watch
   }, done).start();
 });
+
+//es6
+gulp.task('hello',() => {
+  return gulp.src('src/_scripts/oops/*.js').pipe(babel({presets: ['es2015']}));
+});

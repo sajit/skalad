@@ -17,3 +17,8 @@ var my1stModule = {
 
 console.log('Module property',my1stModule.name);
 console.log('Module fn call', my1stModule.getName());
+try{
+	console.log(getName())
+}catch(err){
+	console.error(err);
+}

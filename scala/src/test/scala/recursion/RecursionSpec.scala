@@ -44,4 +44,8 @@ class RecursionSpec extends FlatSpec with Matchers{
     RecursionUtils.packUp(inp) should be (expected)
   }
 
+  it should "count my destruction " in {
+    RecursionUtils.myCount('l',0,"hello") should be (2)
+  }
+
 }

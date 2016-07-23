@@ -88,7 +88,19 @@ object RecursionUtils {
       }
     doPackUp(Int.box(-1),al,1,Nil).reverse.tail
     
-  } 
+  }
+
+
+  def myCount(n:Char,acc:Int,str:String):Int = {
+    if(str.isEmpty()){
+       acc
+    }
+    else {
+      val head = str.head
+      val count = if(head == n){ 1} else {0} ;
+      myCount(n,count+acc,str.tail)
+    }
+  }
 
 
 }

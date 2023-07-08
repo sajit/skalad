@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-cfgmap
+data:
+  msg: "hello world"
+  install: {{ .Release.IsInstall }}-"ld"
+  phrase: {{ (split " " .Values.phrase)._2 | upper }}
+  drink: {{ .Values.drink | default "prime" | quote }}
+  nscount :  {{ len (lookup "v1" "Namespace" "services" "") | quote }}

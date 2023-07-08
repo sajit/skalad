@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: tpl-fn-cfgmap
+data:
+  msg:  {{ .Values.x }}
+  truth: {{ eq 1 0 }}

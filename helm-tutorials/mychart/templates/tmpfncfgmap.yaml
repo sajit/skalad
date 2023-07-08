@@ -3,5 +3,7 @@ kind: ConfigMap
 metadata:
   name: tpl-fn-cfgmap
 data:
-  msg:  {{ .Values.x }}
+  msg:  {{ printf "%s has %d dogs." .Release.Name  (.Values.x | int) }}
   truth: {{ eq 1 0 }}
+  family: {{ nindent 4 "battle: cry" }}
+  

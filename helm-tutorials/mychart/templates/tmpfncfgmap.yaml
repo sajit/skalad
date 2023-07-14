@@ -1,16 +1,10 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  {{- $y := .Values.y | int -}}
-  {{- if eq  1 $y }}
-    name: {{ .Values.y }}-y-cfgmap
-  {{ else }}
-     name: {{ .Values.y }}-tpl-fn-cfgmap  
-  {{- end }}
+    name: y-cfgmap
 data:
   msg:  {{ printf "%s has %d dogs." .Release.Name  (.Values.x | int) }}
   truth: {{ eq 1 0 | quote }}
-  y: {{ .Values.y }}
   family: {{ nindent 4 .Values.f }}
 
   

@@ -3,11 +3,11 @@ kind: ConfigMap
 metadata:
   name: {{ .Release.Name }}-cfgmap
 data:
-  msg: "hello world"
-  install: {{ .Release.IsInstall }}-"ld"
+  key: "mama"
   phrase: {{ (split " " .Values.phrase)._2 | upper }}
   drink: {{ .Values.drink | default "prime" | quote }}
   nscount :  {{ len (lookup "v1" "Namespace" "services" "") | quote }}
+  xnstall: {{ .Release.IsInstall  | quote }}
   {{ if eq .Values.favorite.drink "tea" }}
   mug: "true" 
   {{ else }} 

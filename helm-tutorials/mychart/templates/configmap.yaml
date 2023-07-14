@@ -8,3 +8,8 @@ data:
   phrase: {{ (split " " .Values.phrase)._2 | upper }}
   drink: {{ .Values.drink | default "prime" | quote }}
   nscount :  {{ len (lookup "v1" "Namespace" "services" "") | quote }}
+  {{ if eq .Values.favorite.drink "tea" }}
+  mug: "true" 
+  {{ else }} 
+  cup: "true" 
+  {{ end }}

@@ -8,8 +8,8 @@ data:
   drink: {{ .Values.drink | default "prime" | quote }}
   nscount :  {{ len (lookup "v1" "Namespace" "services" "") | quote }}
   xnstall: {{ .Release.IsInstall  | quote }}
-  {{ if eq .Values.favorite.drink "tea" }}
+  {{- if eq .Values.favorite.drink "tea" }}
   mug: "true" 
-  {{ else }} 
+  {{- else }} 
   cup: "true" 
-  {{ end }}
+  {{- end }}

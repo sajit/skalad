@@ -14,7 +14,7 @@ data:
   cup: "true" 
   {{- end }}
   {{- with .Values.job.years  }}
-  level: {{ .exp }}
+  level: {{ .exp | quote }}
   {{- end }}
   {{- with .Values.favorite }}
   drink: {{ .drink  }}

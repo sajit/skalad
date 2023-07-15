@@ -7,4 +7,9 @@ favorite:
 job:
   level: "staff"
   years:
-    exp: "10"  
+    exp: "10"
+pizzaToppings:
+  - mushrooms
+  - cheese
+  - peppers
+  - onions  

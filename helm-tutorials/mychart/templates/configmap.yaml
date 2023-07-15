@@ -19,4 +19,7 @@ data:
   {{- with .Values.favorite }}
   drink: {{ .drink  }}
   {{- end }}
-
+  toppings: |-
+    {{- range .Values.pizzaToppings }}
+    - {{ . | title | quote }}
+    {{- end }}    

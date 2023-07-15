@@ -13,3 +13,10 @@ data:
   {{- else }} 
   cup: "true" 
   {{- end }}
+  {{- with .Values.job.years  }}
+  level: {{ .exp }}
+  {{- end }}
+  {{- with .Values.favorite }}
+  drink: {{ .drink  }}
+  {{- end }}
+

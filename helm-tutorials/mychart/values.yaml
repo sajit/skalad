@@ -1,7 +1,10 @@
 phrase: "Glory to God"
 x: 1
-y: "1"
 f: "first"
 drink: "tea"
 favorite:
   drink: "cocoa"
+job:
+  level: "staff"
+  years:
+    exp: "10"  
